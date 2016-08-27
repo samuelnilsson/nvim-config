@@ -96,6 +96,12 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+"GIT
+"----------------------------------------------------------------------------
+
+"Enable gitgutter
+let g:gitgutter_enabled = 1
+
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 

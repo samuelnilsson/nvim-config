@@ -11,7 +11,13 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-fugitive'
 
 "Fuzzy file search
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+if has("unix")
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+endif
+
+if has("win32")
+  Plug 'ctrlpvim/ctrlp.vim'
+endif
 
 "Color scheme
 Plug 'altercation/vim-colors-solarized'
@@ -121,3 +127,14 @@ let g:syntastic_check_on_wq = 0
 "----------------------------------------------------------------------------
 
 filetype plugin indent on
+
+"FUZZY SEARCH
+"----------------------------------------------------------------------------
+
+if has("unix")
+  nnoremap <c-p> :FZF<cr>
+endif
+if has("win32")
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+endif

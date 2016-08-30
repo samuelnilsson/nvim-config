@@ -128,6 +128,11 @@ let g:syntastic_check_on_wq = 0
 
 filetype plugin indent on
 
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd ctermbg=none
+hi IndentGuidesEven ctermbg=black
+let g:indent_guides_enable_on_vim_startup = 1
+
 "FUZZY SEARCH
 "----------------------------------------------------------------------------
 

@@ -30,7 +30,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "File icons
-Plug 'ryanoasis/vim-devicons'
+if has("unix")
+  Plug 'ryanoasis/vim-devicons'
+endif
 
 "Indentation lines
 Plug 'nathanaelkane/vim-indent-guides'
@@ -142,4 +144,10 @@ endif
 if has("win32")
   let g:ctrlp_map = '<c-p>'
   let g:ctrlp_cmd = 'CtrlP'
+endif
+
+"WINDOWS SPECIFIC
+"----------------------------------------------------------------------------
+if has("win32")
+  set backspace=indent,eol,start
 endif

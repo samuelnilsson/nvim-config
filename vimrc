@@ -79,6 +79,9 @@ Plug 'elzr/vim-json'
 "Snippets
 Plug 'SirVer/ultisnips'
 
+"Auto insert closing characters
+Plug 'Raimondi/delimitMate'
+
 call plug#end()
 
 "GENERAL SETTINGS

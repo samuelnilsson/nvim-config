@@ -45,6 +45,7 @@ Plug 'leafgarland/typescript-vim'
 
 "Typescript navigations and syntax checking
 Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'

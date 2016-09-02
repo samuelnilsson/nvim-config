@@ -113,6 +113,7 @@ colorscheme solarized
 
 "Enable gitgutter
 let g:gitgutter_enabled = 1
+let g:gitgutter_async = 0
 
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------

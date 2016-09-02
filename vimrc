@@ -81,7 +81,7 @@ Plug 'elzr/vim-json'
 Plug 'SirVer/ultisnips'
 
 "Auto insert closing characters
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 

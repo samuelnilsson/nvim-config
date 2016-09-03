@@ -83,6 +83,17 @@ Plug 'SirVer/ultisnips'
 "Auto insert closing characters
 Plug 'jiangmiao/auto-pairs'
 
+"Fast motions
+Plug 'easymotion/vim-easymotion'
+
+"Omnisharp features for C#
+if has("unix")
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
+end
+if has("win32")
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && msbuild' }
+end
+
 call plug#end()
 
 "GENERAL SETTINGS

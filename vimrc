@@ -21,7 +21,6 @@ endif
 
 "Color scheme
 Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer'}
@@ -118,7 +117,7 @@ set encoding=utf8
 
 syntax enable
 set background=dark
-colorscheme base16-default-dark
+colorscheme solarized
 
 "GIT
 "----------------------------------------------------------------------------

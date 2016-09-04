@@ -23,7 +23,7 @@ endif
 Plug 'altercation/vim-colors-solarized'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer'}
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -126,6 +126,13 @@ colorscheme solarized
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 0
 
+"SNIPPETS
+"----------------------------------------------------------------------------
+
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<C-r>"
+
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 
@@ -160,6 +167,8 @@ endif
 if has("win32")
   let g:ctrlp_map = '<c-p>'
   let g:ctrlp_cmd = 'CtrlP'
+  "Ignore files and folders in gitignore
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 endif
 
 "WINDOWS SPECIFIC

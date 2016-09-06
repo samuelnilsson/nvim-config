@@ -91,8 +91,10 @@ if has("unix")
   Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
 end
 if has("win32")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && msbuild' }
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && MSBuild.exe' }
 end
+
+Plug 'tpope/vim-dispatch'
 
 call plug#end()
 

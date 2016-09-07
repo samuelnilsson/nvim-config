@@ -86,6 +86,9 @@ Plug 'jiangmiao/auto-pairs'
 "Fast motions
 Plug 'easymotion/vim-easymotion'
 
+"Syntax for pug pug files
+Plug 'digitaltoad/vim-pug'
+
 "Omnisharp features for C#
 if has("unix")
   Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }

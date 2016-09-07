@@ -145,8 +145,9 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_typescript_checkers=['tsuquyomi']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+let g:syntastic_aggregate_errors = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

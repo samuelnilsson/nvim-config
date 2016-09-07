@@ -94,8 +94,14 @@ if has("unix")
   Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
 end
 if has("win32")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && msbuild' }
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && MSBuild.exe' }
 end
+
+"Needed for some plugins
+Plug 'tpope/vim-dispatch'
+
+"Highlighting of colors in css, less, sass and html
+Plug 'gko/vim-coloresque'
 
 call plug#end()
 

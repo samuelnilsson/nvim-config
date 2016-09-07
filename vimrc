@@ -23,7 +23,7 @@ endif
 Plug 'altercation/vim-colors-solarized'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer --omnisharp-completer'}
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -40,8 +40,14 @@ Plug 'nathanaelkane/vim-indent-guides'
 "Syntax checking
 Plug 'scrooloose/syntastic'
 
-"Typescript syntax
+"Highlighting for different languages
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'groenewege/vim-less'
+Plug 'elzr/vim-json'
+Plug 'digitaltoad/vim-pug'
+Plug 'adamclerk/vim-razor'
+Plug 'gko/vim-coloresque'
 
 "Typescript navigations and syntax checking
 Plug 'Quramy/tsuquyomi'
@@ -59,9 +65,6 @@ Plug 'majutsushi/tagbar'
 "Show git diff in file
 Plug 'airblade/vim-gitgutter'
 
-"Improved sytax checking and highlighting for javascript
-Plug 'pangloss/vim-javascript'
-
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
 
@@ -71,12 +74,6 @@ Plug 'honza/vim-snippets'
 "Multicursor in Sublime Text style
 Plug 'terryma/vim-multiple-cursors'
 
-"Syntax highlighting for less
-Plug 'groenewege/vim-less'
-
-"Better json highlighting
-Plug 'elzr/vim-json'
-
 "Snippets
 Plug 'SirVer/ultisnips'
 
@@ -85,9 +82,6 @@ Plug 'jiangmiao/auto-pairs'
 
 "Fast motions
 Plug 'easymotion/vim-easymotion'
-
-"Syntax for pug pug files
-Plug 'digitaltoad/vim-pug'
 
 "Omnisharp features for C#
 if has("unix")
@@ -99,9 +93,6 @@ end
 
 "Needed for some plugins
 Plug 'tpope/vim-dispatch'
-
-"Highlighting of colors in css, less, sass and html
-Plug 'gko/vim-coloresque'
 
 call plug#end()
 

@@ -23,7 +23,7 @@ endif
 Plug 'altercation/vim-colors-solarized'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer --omnisharp-completer'}
 
 "Extended status line
 Plug 'vim-airline/vim-airline'

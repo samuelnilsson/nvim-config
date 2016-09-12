@@ -51,7 +51,12 @@ Plug 'gko/vim-coloresque'
 
 "Typescript navigations and syntax checking
 Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+if has("unix")
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+end
+if has("win32")
+  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw64.mak'}
+end
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
@@ -94,6 +99,12 @@ end
 "Needed for some plugins
 Plug 'tpope/vim-dispatch'
 
+"Align code
+Plug 'godlygeek/tabular'
+
+"Plugin for project specific settings
+Plug 'embear/vim-localvimrc'
+
 call plug#end()
 
 "GENERAL SETTINGS
@@ -103,6 +114,9 @@ call plug#end()
 set number
 "Enable relative line numbers
 set relativenumber
+
+"Set leader to use comma
+let mapleader=","
 
 "Set line at 80 characters
 let &colorcolumn=join(range(81,999),",")

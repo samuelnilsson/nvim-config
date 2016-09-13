@@ -48,6 +48,7 @@ Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
 Plug 'adamclerk/vim-razor'
 Plug 'gko/vim-coloresque'
+Plug 'kchmck/vim-coffee-script'
 
 "Typescript navigations and syntax checking
 Plug 'Quramy/tsuquyomi'
@@ -151,7 +152,12 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "----------------------------------------------------------------------------
 
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+if has("unix")
+  let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+end
+if has("win32")
+  let g:syntastic_typescript_checkers = ['tsuquyomi']
+end
 let g:syntastic_aggregate_errors = 1
 
 set statusline+=%#warningmsg#

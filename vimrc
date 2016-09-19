@@ -106,6 +106,9 @@ Plug 'godlygeek/tabular'
 "Plugin for project specific settings
 Plug 'embear/vim-localvimrc'
 
+"Easy find and replace across multiple files
+Plug 'dkprice/vim-easygrep'
+
 call plug#end()
 
 "GENERAL SETTINGS

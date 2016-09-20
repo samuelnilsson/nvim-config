@@ -191,8 +191,11 @@ endif
 if has("win32")
   let g:ctrlp_map = '<c-p>'
   let g:ctrlp_cmd = 'CtrlP'
-  "Ignore files and folders in gitignore
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+endif
+
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 "WINDOWS SPECIFIC

@@ -159,7 +159,7 @@ if has("unix")
   let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 end
 if has("win32")
-  let g:syntastic_typescript_checkers = ['tsuquyomi']
+  let g:syntastic_typescript_checkers = ['tsc']
 end
 let g:syntastic_aggregate_errors = 1
 
@@ -203,3 +203,21 @@ endif
 if has("win32")
   set backspace=indent,eol,start
 endif
+
+"TAGBAR ADDITIONAL LANGUAGES SUPPORT
+"----------------------------------------------------------------------------
+
+"Typescript
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }

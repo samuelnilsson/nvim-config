@@ -204,8 +204,11 @@ if has("win32")
   set backspace=indent,eol,start
 endif
 
-"TAGBAR ADDITIONAL LANGUAGES SUPPORT
+"TAGBAR
 "----------------------------------------------------------------------------
+
+"Map to F8 key
+nmap <F8> :TagbarToggle<CR>
 
 "Typescript
 let g:tagbar_type_typescript = {

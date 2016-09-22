@@ -107,7 +107,7 @@ Plug 'godlygeek/tabular'
 Plug 'embear/vim-localvimrc'
 
 "Easy find and replace across multiple files
-Plug 'dkprice/vim-easygrep'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
@@ -194,8 +194,7 @@ if has("win32")
 endif
 
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ackprg = 'ag --vimgrep'
 endif
 
 "WINDOWS SPECIFIC

@@ -159,7 +159,8 @@ if has("unix")
   let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 end
 if has("win32")
-  let g:syntastic_typescript_checkers = ['tsc']
+  let g:syntastic_typescript_checkers = ['tsuquyomi']
+  let g:tsuquyomi_use_local_typescript = 0
 end
 let g:syntastic_aggregate_errors = 1
 

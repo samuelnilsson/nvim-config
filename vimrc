@@ -224,3 +224,9 @@ let g:tagbar_type_typescript = {
     \ 'e:enums',
   \ ]
 \ }
+
+"CUSTOM COMMANDS
+"----------------------------------------------------------------------------
+
+"Format JSON
+nmap =j :%!python -m json.tool<CR>

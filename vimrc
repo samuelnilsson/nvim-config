@@ -155,14 +155,10 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "----------------------------------------------------------------------------
 
 let g:syntastic_javascript_checkers = ['eslint']
-if has("unix")
-  let g:syntastic_typescript_checkers = ['tslint', 'tsc']
-end
+let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 if has("win32")
-  let g:syntastic_typescript_checkers = ['tsuquyomi']
   let g:tsuquyomi_use_local_typescript = 0
 end
-let g:syntastic_aggregate_errors = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

@@ -23,7 +23,7 @@ endif
 Plug 'altercation/vim-colors-solarized'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer --omnisharp-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -46,7 +46,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
-Plug 'adamclerk/vim-razor'
+Plug 'OrangeT/vim-csharp'
 Plug 'gko/vim-coloresque'
 Plug 'kchmck/vim-coffee-script'
 
@@ -91,10 +91,10 @@ Plug 'easymotion/vim-easymotion'
 
 "Omnisharp features for C#
 if has("unix")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild && cd .. && cd omnisharp-roslyn && ./build.sh' }
 end
 if has("win32")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && MSBuild.exe' }
+  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && MSBuild.exe && cd .. && cd omnisharp-roslyn && Powershell.exe -File build.ps1' }
 end
 
 "Needed for some plugins
@@ -172,7 +172,7 @@ let g:syntastic_check_on_wq = 0
 "INDENTATION
 "----------------------------------------------------------------------------
 
-filetype plugin indent on
+filetype plugin on
 
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd ctermbg=none
@@ -226,3 +226,20 @@ let g:tagbar_type_typescript = {
 
 "Format JSON
 nmap =j :%!python -m json.tool<CR>
+
+"AUTOCOMPLETION
+"----------------------------------------------------------------------------
+
+"User roslyn server for omnisharp
+let g:OmniSharp_server_type = 'roslyn'
+let g:syntastic_cs_checkers = ['code_checker']
+
+set completeopt=longest,menuone,preview
+
+augroup omnisharp_commands
+    autocmd!
+
+    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+augroup END

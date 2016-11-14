@@ -179,6 +179,10 @@ hi IndentGuidesOdd ctermbg=none
 hi IndentGuidesEven ctermbg=black
 let g:indent_guides_enable_on_vim_startup = 1
 
+"FOLDING
+"----------------------------------------------------------------------------
+setlocal foldmethod=syntax
+
 "FUZZY SEARCH
 "----------------------------------------------------------------------------
 

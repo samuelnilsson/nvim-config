@@ -20,7 +20,7 @@ if has("win32")
 endif
 
 "Color scheme
-Plug 'altercation/vim-colors-solarized'
+Plug 'iCyMind/NeoSolarized'
 
 "Auto completion engine
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
@@ -134,8 +134,9 @@ set encoding=utf8
 "----------------------------------------------------------------------------
 
 syntax enable
+set termguicolors
 set background=dark
-colorscheme solarized
+colorscheme NeoSolarized
 
 "GIT
 "----------------------------------------------------------------------------
@@ -233,6 +234,10 @@ nmap =j :%!python -m json.tool<CR>
 
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
+
+let g:ycm_filetype_blacklist = {
+  \ 'cs' : 1
+  \}
 
 "User roslyn server for omnisharp
 let g:OmniSharp_server_type = 'roslyn'

@@ -20,7 +20,7 @@ if has("win32")
 endif
 
 "Color scheme
-Plug 'iCyMind/NeoSolarized'
+Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
 Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
@@ -136,7 +136,7 @@ set encoding=utf8
 syntax enable
 set termguicolors
 set background=dark
-colorscheme NeoSolarized
+colorscheme base16-default-dark
 
 "GIT
 "----------------------------------------------------------------------------

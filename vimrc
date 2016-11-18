@@ -109,6 +109,15 @@ Plug 'embear/vim-localvimrc'
 "Easy find and replace across multiple files
 Plug 'mileszs/ack.vim'
 
+"For 'distraction-free' writing of non-code documents
+Plug 'junegunn/goyo.vim'
+
+"Built in shell
+Plug 'Shougo/vimshell.vim'
+
+"Run scripts from within vim
+Plug 'thinca/vim-quickrun'
+
 call plug#end()
 
 "GENERAL SETTINGS

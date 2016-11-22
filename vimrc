@@ -189,6 +189,9 @@ setlocal foldmethod=syntax
 
 if has("unix")
   nnoremap <c-p> :FZF<cr>
+  if executable('ag')
+    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+  endif
 endif
 if has("win32")
   let g:ctrlp_map = '<c-p>'

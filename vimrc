@@ -118,6 +118,9 @@ Plug 'Shougo/vimshell.vim'
 "Run scripts from within vim
 Plug 'thinca/vim-quickrun'
 
+"Add indent lines
+Plug 'https://github.com/Yggdroot/indentLine'
+
 call plug#end()
 
 "GENERAL SETTINGS
@@ -261,3 +264,8 @@ augroup omnisharp_commands
 
     autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
 augroup END
+
+"SEARCH
+
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>

@@ -41,7 +41,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
 
 "Highlighting for different languages
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
@@ -56,7 +56,7 @@ if has("unix")
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 end
 if has("win32")
-  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw64.mak'}
+  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw32.mak'}
 end
 
 "Change surroundings in pairs
@@ -117,6 +117,9 @@ Plug 'Shougo/vimshell.vim'
 
 "Run scripts from within vim
 Plug 'thinca/vim-quickrun'
+
+"Add indent lines
+Plug 'https://github.com/Yggdroot/indentLine'
 
 call plug#end()
 
@@ -264,3 +267,8 @@ augroup omnisharp_commands
 
     autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
 augroup END
+
+"SEARCH
+
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>

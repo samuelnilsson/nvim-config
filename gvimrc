@@ -5,5 +5,5 @@ set guioptions-=L  "remove left-hand scroll bar
 
 set anti enc=utf-8
 if has("win32")
-  set guifont=Consolas:h14:cANSI
+  set guifont=Consolas:h13:cANSI
 endif

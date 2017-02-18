@@ -23,7 +23,7 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer --gocode-completer' }
 
 "Extended status line
 Plug 'vim-airline/vim-airline'

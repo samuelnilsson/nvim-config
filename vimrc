@@ -118,8 +118,11 @@ Plug 'Shougo/vimshell.vim'
 "Run scripts from within vim
 Plug 'thinca/vim-quickrun'
 
+"Golang support
+Plug 'fatih/vim-go'
+
 "Add indent lines
-Plug 'https://github.com/Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -172,6 +175,10 @@ let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 if has("win32")
   let g:tsuquyomi_use_local_typescript = 0
 end
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

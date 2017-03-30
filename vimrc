@@ -156,6 +156,7 @@ colorscheme base16-default-dark
 "Enable gitgutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 0
+set updatetime=250
 
 "SNIPPETS
 "----------------------------------------------------------------------------

@@ -23,7 +23,7 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer --gocode-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --gocode-completer' }
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -42,7 +42,7 @@ Plug 'scrooloose/syntastic'
 
 "Highlighting for different languages
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
@@ -123,6 +123,12 @@ Plug 'fatih/vim-go'
 
 "Add indent lines
 Plug 'Yggdroot/indentLine'
+
+"Auto completion for node
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+"Generate JsDoc comments
+Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 
@@ -279,3 +285,7 @@ augroup END
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+"SYNTAX MODIFICATIONS
+"----------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.ts   set syntax=tssql

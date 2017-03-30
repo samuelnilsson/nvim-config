@@ -23,7 +23,7 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py --gocode-completer' }
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -42,7 +42,7 @@ Plug 'scrooloose/syntastic'
 
 "Highlighting for different languages
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
@@ -118,8 +118,17 @@ Plug 'Shougo/vimshell.vim'
 "Run scripts from within vim
 Plug 'thinca/vim-quickrun'
 
+"Golang support
+Plug 'fatih/vim-go'
+
 "Add indent lines
-Plug 'https://github.com/Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
+
+"Auto completion for node
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+"Generate JsDoc comments
+Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 
@@ -174,6 +183,10 @@ if has("win32")
   let g:tsuquyomi_use_local_typescript = 0
 end
 
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -202,6 +215,9 @@ setlocal foldmethod=syntax
 
 if has("unix")
   nnoremap <c-p> :FZF<cr>
+  if executable('ag')
+    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+  endif
 endif
 if has("win32")
   let g:ctrlp_map = '<c-p>'
@@ -270,3 +286,7 @@ augroup END
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+"SYNTAX MODIFICATIONS
+"----------------------------------------------------------------------------
+autocmd BufNewFile,BufRead *.ts   set syntax=tssql

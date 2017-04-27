@@ -23,7 +23,13 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+else
+  Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
+endif
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -242,18 +248,18 @@ nmap <F8> :TagbarToggle<CR>
 
 "Typescript
 let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
+      \ 'ctagstype': 'typescript',
+      \ 'kinds': [
+      \ 'c:classes',
+      \ 'n:modules',
+      \ 'f:functions',
+      \ 'v:variables',
+      \ 'v:varlambdas',
+      \ 'm:members',
+      \ 'i:interfaces',
+      \ 'e:enums',
+      \ ]
+      \ }
 
 "CUSTOM COMMANDS
 "----------------------------------------------------------------------------
@@ -264,25 +270,37 @@ nmap =j :%!python -m json.tool<CR>
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
-let g:ycm_filetype_blacklist = {
-  \ 'cs' : 1
-  \}
+"Deoplete
+"----------------------------------------------------------------------------
 
-"User roslyn server for omnisharp
-let g:OmniSharp_server_type = 'roslyn'
-let g:syntastic_cs_checkers = ['code_checker']
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-set completeopt=longest,menuone,preview
+  call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+  let g:deoplete#omni#functions = {}
+  let g:deoplete#omni#functions.javascript = [
+        \ 'tern#Complete',
+        \ 'jspc#omni'
+        \]
 
-augroup omnisharp_commands
-    autocmd!
+  set completeopt=longest,menuone,preview
+  let g:deoplete#sources = {}
+  let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+  let g:tern#command = ['tern']
+  let g:tern#arguments = ['--persistent']
 
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+  "YouCompleteMe
+  "----------------------------------------------------------------------------
 
-    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-augroup END
+else
+  let g:ycm_filetype_blacklist = {
+        \ 'cs' : 1
+        \}
+endif
 
 "SEARCH
+"----------------------------------------------------------------------------
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>

@@ -28,8 +28,9 @@ if has('nvim')
   Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
   Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 else
-  Plug 'Valloric/YouCompleteMe', { 'do': 'python install.py' }
+  Plug 'Shougo/neocomplete.vim'
 endif
+Plug 'Shougo/neco-vim'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -60,10 +61,10 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'Quramy/tsuquyomi'
 if has("unix")
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-end
+endif
 if has("win32")
   Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw32.mak'}
-end
+endif
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
@@ -94,14 +95,6 @@ Plug 'jiangmiao/auto-pairs'
 
 "Fast motions
 Plug 'easymotion/vim-easymotion'
-
-"Omnisharp features for C#
-if has("unix")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild && cd .. && cd omnisharp-roslyn && ./build.sh' }
-end
-if has("win32")
-  Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && MSBuild.exe && cd .. && cd omnisharp-roslyn && Powershell.exe -File build.ps1' }
-end
 
 "Needed for some plugins
 Plug 'tpope/vim-dispatch'
@@ -187,7 +180,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_typescript_checkers = ['tslint', 'tsc']
 if has("win32")
   let g:tsuquyomi_use_local_typescript = 0
-end
+endif
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
@@ -290,13 +283,12 @@ if has('nvim')
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent']
 
-  "YouCompleteMe
-  "----------------------------------------------------------------------------
-
+"Neocomplete
+"----------------------------------------------------------------------------
 else
-  let g:ycm_filetype_blacklist = {
-        \ 'cs' : 1
-        \}
+  let g:neocomplete#enable_at_startup = 1
+  "Use tab key
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 endif
 
 "SEARCH
@@ -308,3 +300,9 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "SYNTAX MODIFICATIONS
 "----------------------------------------------------------------------------
 autocmd BufNewFile,BufRead *.ts   set syntax=tssql
+
+"NERDTREE
+"----------------------------------------------------------------------------
+
+"Do not open automatically
+let g:nerdtree_tabs_open_on_gui_startup = 0

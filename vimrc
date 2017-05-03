@@ -23,14 +23,7 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-  Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-else
-  Plug 'Shougo/neocomplete.vim'
-endif
-Plug 'Shougo/neco-vim'
+Plug 'ajh17/VimCompletesMe'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -262,34 +255,6 @@ nmap =j :%!python -m json.tool<CR>
 
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
-
-"Deoplete
-"----------------------------------------------------------------------------
-
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-  call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#functions.javascript = [
-        \ 'tern#Complete',
-        \ 'jspc#omni'
-        \]
-
-  set completeopt=longest,menuone,preview
-  let g:deoplete#sources = {}
-  let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent']
-
-"Neocomplete
-"----------------------------------------------------------------------------
-else
-  let g:neocomplete#enable_at_startup = 1
-  "Use tab key
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-endif
 
 "SEARCH
 "----------------------------------------------------------------------------

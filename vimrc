@@ -256,6 +256,8 @@ nmap =j :%!python -m json.tool<CR>
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
+autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
+
 "SEARCH
 "----------------------------------------------------------------------------
 

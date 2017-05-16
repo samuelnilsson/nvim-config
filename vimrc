@@ -23,7 +23,11 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-if has('lua')
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'mhartington/nvim-typescript'
+  Plug 'carlitux/deoplete-ternjs'
+elseif has('lua')
   Plug 'Shougo/neocomplete.vim'
 else
   Plug 'ajh17/VimCompletesMe'
@@ -266,7 +270,18 @@ nmap =j :%!python -m json.tool<CR>
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
-if has('lua')
+if has('nvim')
+  filetype plugin indent on
+  let g:deoplete#enable_at_startup = 1
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  let g:tern#command = ["tern"]
+  let g:tern#arguments = ["--persistent"]
+elseif has('lua')
   set nocompatible
   set completeopt+=menuone
   set rtp+=~/work/neocomplete.vim/
@@ -275,12 +290,17 @@ if has('lua')
 
   filetype plugin indent on
   let g:neocomplete#enable_at_startup = 1
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
   let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 else
   autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
 endif

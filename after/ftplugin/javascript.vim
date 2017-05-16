@@ -6,4 +6,6 @@ set ts=2 sw=2 et
 
 nnoremap <F12> :TernDef<cr>
 nnoremap <c-F12> :TernRefs<cr>
-nnoremap <Leader>rn :TernRename 
+nnoremap <Leader>rn :TernRename
+
+let g:formatters_javascript = ['eslint_local']

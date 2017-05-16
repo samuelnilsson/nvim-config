@@ -23,7 +23,11 @@ endif
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'ajh17/VimCompletesMe'
+if has('lua')
+  Plug 'Shougo/neocomplete.vim'
+else
+  Plug 'ajh17/VimCompletesMe'
+endif
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -56,7 +60,7 @@ if has("unix")
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 endif
 if has("win32")
-  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw32.mak'}
+  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw64.mak'}
 endif
 
 "Change surroundings in pairs
@@ -121,6 +125,12 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 "Generate JsDoc comments
 Plug 'heavenshell/vim-jsdoc'
+
+"Automatic tab insertion on newline
+Plug 'Raimondi/delimitMate'
+
+"Autoformat code
+Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 
@@ -256,7 +266,24 @@ nmap =j :%!python -m json.tool<CR>
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
-autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
+if has('lua')
+  set nocompatible
+  set completeopt+=menuone
+  set rtp+=~/work/neocomplete.vim/
+  set rtp+=~/work/vimproc.vim/
+  set rtp+=~/.cache/neobundle/tsuquyomi/
+
+  filetype plugin indent on
+  let g:neocomplete#enable_at_startup = 1
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+else
+  autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
+endif
 
 "SEARCH
 "----------------------------------------------------------------------------

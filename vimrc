@@ -27,6 +27,7 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim'
   Plug 'mhartington/nvim-typescript'
   Plug 'carlitux/deoplete-ternjs'
+  Plug 'zchee/deoplete-jedi'
 elseif has('lua')
   Plug 'Shougo/neocomplete.vim'
 else
@@ -152,6 +153,10 @@ let mapleader=","
 "Set line at 80 characters
 let &colorcolumn=join(range(81,999),",")
 
+"Convenient remap of copying from and to clipboard
+map <Leader>y "*y
+map <Leader>p "*p
+
 "ICONS
 "----------------------------------------------------------------------------
 
@@ -184,7 +189,8 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "----------------------------------------------------------------------------
 
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tslint']
 if has("win32")
   let g:tsuquyomi_use_local_typescript = 0
 endif

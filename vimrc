@@ -326,3 +326,14 @@ autocmd BufNewFile,BufRead *.ts   set syntax=tssql
 
 "Do not open automatically
 let g:nerdtree_tabs_open_on_gui_startup = 0
+
+"NEOVIM ON WINDOWS
+"----------------------------------------------------------------------------
+
+"Specific to my system in order to use both python versions on windows
+if has("nvim")
+  if has("win32")
+    let g:python3_host_prog='C:/Users/snn/Envs/Neovim3/Scripts/python.exe'
+    let g:python_host_prog='C:/Users/snn/Envs/Neovim2/Scripts/python.exe'
+  endif
+endif

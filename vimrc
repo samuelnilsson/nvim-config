@@ -21,6 +21,7 @@ endif
 
 "Color scheme
 Plug 'chriskempson/base16-vim'
+Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
 if has('nvim')
@@ -108,7 +109,7 @@ Plug 'godlygeek/tabular'
 Plug 'embear/vim-localvimrc'
 
 "Easy find and replace across multiple files
-Plug 'mileszs/ack.vim'
+Plug 'eugen0329/vim-esearch'
 
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'
@@ -157,6 +158,9 @@ let &colorcolumn=join(range(81,999),",")
 map <Leader>y "*y
 map <Leader>p "*p
 
+"Do not ask to use lvimrc file
+g:localvimrc_ask = 0
+
 "ICONS
 "----------------------------------------------------------------------------
 
@@ -167,8 +171,7 @@ set encoding=utf8
 
 syntax enable
 set termguicolors
-set background=dark
-colorscheme base16-default-dark
+colorscheme solarized8_dark
 
 "GIT
 "----------------------------------------------------------------------------
@@ -236,8 +239,22 @@ if has("win32")
   let g:ctrlp_cmd = 'CtrlP'
 endif
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+if has("nvim")
+  let g:esearch = {
+        \ 'adapter':    'ag',
+        \ 'backend':    'nvim',
+        \ 'out':        'qflist',
+        \ 'batch_size': 1000,
+        \ 'use':        ['visual', 'hlsearch', 'last'],
+        \}
+else
+  let g:esearch = {
+        \ 'adapter':    'ag',
+        \ 'backend':    'vimproc',
+        \ 'out':        'qflist',
+        \ 'batch_size': 1000,
+        \ 'use':        ['visual', 'hlsearch', 'last'],
+        \}
 endif
 
 "WINDOWS SPECIFIC
@@ -254,18 +271,18 @@ nmap <F8> :TagbarToggle<CR>
 
 "Typescript
 let g:tagbar_type_typescript = {
-      \ 'ctagstype': 'typescript',
-      \ 'kinds': [
-      \ 'c:classes',
-      \ 'n:modules',
-      \ 'f:functions',
-      \ 'v:variables',
-      \ 'v:varlambdas',
-      \ 'm:members',
-      \ 'i:interfaces',
-      \ 'e:enums',
-      \ ]
-      \ }
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
 
 "CUSTOM COMMANDS
 "----------------------------------------------------------------------------

@@ -48,7 +48,7 @@ endif
 Plug 'nathanaelkane/vim-indent-guides'
 
 "Syntax checking
-Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 
 "Highlighting for different languages
 Plug 'HerringtonDarkholme/yats.vim'
@@ -158,9 +158,6 @@ let &colorcolumn=join(range(81,999),",")
 map <Leader>y "*y
 map <Leader>p "*p
 
-"Do not ask to use lvimrc file
-g:localvimrc_ask = 0
-
 "ICONS
 "----------------------------------------------------------------------------
 
@@ -191,25 +188,27 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tslint']
-if has("win32")
-  let g:tsuquyomi_use_local_typescript = 0
-endif
+autocmd! BufWritePost * Neomake
 
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:tsuquyomi_disable_quickfix = 1
+"let g:syntastic_typescript_checkers = ['tslint']
+"if has("win32")
+  "let g:tsuquyomi_use_local_typescript = 0
+"endif
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"let g:go_list_type = "quickfix"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 "INDENTATION
 "----------------------------------------------------------------------------

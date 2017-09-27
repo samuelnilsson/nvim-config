@@ -51,7 +51,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 
 "Highlighting for different languages
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'

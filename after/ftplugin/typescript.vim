@@ -4,10 +4,6 @@ setlocal expandtab
 
 set ts=2 sw=2 et
 
-nnoremap <F12> :TsuDefinition<cr>
-nnoremap <c-F12> :TsuReferences<cr>
-nnoremap <Leader>rn :TsuRenameSymbol<cr>
-
 function! neomake#makers#ft#typescript#EnabledMakers() abort
     return ['tsc', 'tslint']
 endfunction

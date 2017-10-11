@@ -60,15 +60,6 @@ Plug 'OrangeT/vim-csharp'
 Plug 'gko/vim-coloresque'
 Plug 'kchmck/vim-coffee-script'
 
-"Typescript navigations and syntax checking
-Plug 'Quramy/tsuquyomi'
-if has("unix")
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-endif
-if has("win32")
-  Plug 'Shougo/vimproc.vim', {'do' : 'mingw32-make -f make_mingw64.mak'}
-endif
-
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
 
@@ -190,26 +181,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 
 autocmd! BufWritePost * Neomake
 
-"let g:syntastic_javascript_checkers = ['eslint']
-"let g:tsuquyomi_disable_quickfix = 1
-"let g:syntastic_typescript_checkers = ['tslint']
-"if has("win32")
-  "let g:tsuquyomi_use_local_typescript = 0
-"endif
-
-"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-"let g:go_list_type = "quickfix"
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
 "INDENTATION
 "----------------------------------------------------------------------------
 
@@ -308,7 +279,6 @@ elseif has('lua')
   set completeopt+=menuone
   set rtp+=~/work/neocomplete.vim/
   set rtp+=~/work/vimproc.vim/
-  set rtp+=~/.cache/neobundle/tsuquyomi/
 
   filetype plugin indent on
   let g:neocomplete#enable_at_startup = 1

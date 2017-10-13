@@ -139,6 +139,9 @@ set number
 "Enable relative line numbers
 set relativenumber
 
+"For better performance
+set lazyredraw
+
 "Set leader to use comma
 let mapleader=","
 

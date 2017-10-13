@@ -51,7 +51,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 
 "Highlighting for different languages
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
@@ -302,10 +302,6 @@ endif
 
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-
-"SYNTAX MODIFICATIONS
-"----------------------------------------------------------------------------
-autocmd BufNewFile,BufRead *.ts   set syntax=tssql
 
 "NERDTREE
 "----------------------------------------------------------------------------

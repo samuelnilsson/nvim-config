@@ -184,7 +184,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 
-autocmd! BufWritePost * Neomake
+call neomake#configure#automake('nw', 750)
 
 "INDENTATION
 "----------------------------------------------------------------------------

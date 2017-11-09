@@ -31,6 +31,7 @@ if has('nvim')
   Plug 'zchee/deoplete-jedi'
 elseif has('lua')
   Plug 'Shougo/neocomplete.vim'
+  Plug 'Quramy/tsuquyomi'
 else
   Plug 'ajh17/VimCompletesMe'
 endif
@@ -101,6 +102,7 @@ Plug 'embear/vim-localvimrc'
 
 "Easy find and replace across multiple files
 Plug 'eugen0329/vim-esearch'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'

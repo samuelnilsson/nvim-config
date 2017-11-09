@@ -37,3 +37,20 @@ function! neomake#makers#ft#typescript#tslint() abort
     endif
     return maker
 endfunction
+
+if !has("nvim")
+  if has("lua")
+    set nocompatible
+    set completeopt+=menuone
+    set rtp+=~/work/neocomplete.vim/
+    set rtp+=~/work/vimproc.vim/
+    set rtp+=~/.cache/neobundle/tsuquyomi/
+
+    filetype plugin indent on
+    let g:neocomplete#enable_at_startup = 1
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+  endif
+endif

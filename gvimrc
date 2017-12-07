@@ -4,8 +4,6 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 set anti enc=utf-8
-if has("win32")
-  set guifont=Consolas:h13:cANSI
-  "Start as mazimized window
-  autocmd GUIEnter * simalt ~x
-endif
+set guifont=DejaVu_Sans_Mono:h11:cANSI
+"Start as mazimized window
+autocmd GUIEnter * simalt ~x

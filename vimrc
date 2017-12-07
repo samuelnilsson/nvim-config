@@ -97,12 +97,8 @@ Plug 'tpope/vim-dispatch'
 "Align code
 Plug 'godlygeek/tabular'
 
-"Plugin for project specific settings
-Plug 'embear/vim-localvimrc'
-
 "Easy find and replace across multiple files
 Plug 'eugen0329/vim-esearch'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'
@@ -153,6 +149,9 @@ let &colorcolumn=join(range(81,999),",")
 "Convenient remap of copying from and to clipboard
 map <Leader>y "*y
 map <Leader>p "*p
+
+"Enable project specific vimrc files
+set exrc
 
 "ICONS
 "----------------------------------------------------------------------------
@@ -295,11 +294,16 @@ elseif has('lua')
 
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 else
   autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
+endif
+
+if has('win32')
+  let g:tsuquyomi_use_local_typescript = 0
+  let g:tsuquyomi_use_dev_node_module = 0
 endif
 
 "SEARCH
@@ -324,3 +328,8 @@ if has("nvim")
     let g:python_host_prog='C:/Users/snn/Envs/Neovim2/Scripts/python.exe'
   endif
 endif
+
+"END
+"----------------------------------------------------------------------------
+
+set secure

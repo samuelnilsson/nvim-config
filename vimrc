@@ -49,7 +49,7 @@ endif
 Plug 'nathanaelkane/vim-indent-guides'
 
 "Syntax checking
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 
 "Highlighting for different languages
 Plug 'HerringtonDarkholme/yats.vim'
@@ -183,8 +183,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "SYNTAX CHECKING
 "----------------------------------------------------------------------------
 
-call neomake#configure#automake('nw', 750)
-
 "INDENTATION
 "----------------------------------------------------------------------------
 
@@ -290,7 +288,6 @@ elseif has('lua')
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
-  let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

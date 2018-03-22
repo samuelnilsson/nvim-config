@@ -315,6 +315,11 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "Do not open automatically
 let g:nerdtree_tabs_open_on_gui_startup = 0
 
+"LINTER
+"----------------------------------------------------------------------------
+let g:ale_fix_on_save = 1
+
+
 "NEOVIM ON WINDOWS
 "----------------------------------------------------------------------------
 

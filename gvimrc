@@ -4,6 +4,10 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 set anti enc=utf-8
-set guifont=DejaVu_Sans_Mono:h11:cANSI
+if has('nvim')
+  Guifont Dejavu Sans Mono:h11
+else
+  set guifont=DejaVu_Sans_Mono:h11:cANSI
+endif
 "Start as mazimized window
 autocmd GUIEnter * simalt ~x

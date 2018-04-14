@@ -196,6 +196,9 @@ autocmd FileType html,javascript,typescript,css,less,php,scss let b:vcm_tab_comp
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+"Ctrlp ignore files in gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
 "NERDTREE
 "----------------------------------------------------------------------------
 

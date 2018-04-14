@@ -24,17 +24,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'mhartington/nvim-typescript'
-  Plug 'carlitux/deoplete-ternjs'
-  Plug 'zchee/deoplete-jedi'
-elseif has('lua')
-  Plug 'Shougo/neocomplete.vim'
-  Plug 'Quramy/tsuquyomi'
-else
-  Plug 'ajh17/VimCompletesMe'
-endif
+Plug 'ajh17/VimCompletesMe'
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim' "Needed for tsuquyomi
+Plug 'shawncplus/phpcomplete.vim'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -44,9 +37,6 @@ Plug 'vim-airline/vim-airline-themes'
 if has("unix")
   Plug 'ryanoasis/vim-devicons'
 endif
-
-"Indentation lines
-Plug 'nathanaelkane/vim-indent-guides'
 
 "Syntax checking
 Plug 'w0rp/ale'
@@ -60,6 +50,9 @@ Plug 'digitaltoad/vim-pug'
 Plug 'OrangeT/vim-csharp'
 Plug 'gko/vim-coloresque'
 Plug 'kchmck/vim-coffee-script'
+Plug 'stanangeloff/php.vim'
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'cakebaker/scss-syntax.vim'
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
@@ -76,13 +69,11 @@ Plug 'airblade/vim-gitgutter'
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
 
-"Collection of snippets
-Plug 'honza/vim-snippets'
-
 "Multicursor in Sublime Text style
 Plug 'terryma/vim-multiple-cursors'
 
 "Snippets
+Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 
 "Auto insert closing characters
@@ -91,23 +82,11 @@ Plug 'jiangmiao/auto-pairs'
 "Fast motions
 Plug 'easymotion/vim-easymotion'
 
-"Needed for some plugins
-Plug 'tpope/vim-dispatch'
-
-"Align code
-Plug 'godlygeek/tabular'
-
 "Easy find and replace across multiple files
 Plug 'eugen0329/vim-esearch'
 
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'
-
-"Built in shell
-Plug 'Shougo/vimshell.vim'
-
-"Run scripts from within vim
-Plug 'thinca/vim-quickrun'
 
 "Golang support
 Plug 'fatih/vim-go'
@@ -124,21 +103,17 @@ Plug 'heavenshell/vim-jsdoc'
 "Automatic tab insertion on newline
 Plug 'Raimondi/delimitMate'
 
-"Autoformat code
-Plug 'Chiel92/vim-autoformat'
-
 call plug#end()
 
 "GENERAL SETTINGS
 "----------------------------------------------------------------------------
 
+filetype plugin on
+
 "Enable line numbers
 set number
 "Enable relative line numbers
 set relativenumber
-
-"For better performance
-set lazyredraw
 
 "Set leader to use comma
 let mapleader=","
@@ -180,19 +155,6 @@ let g:UltiSnipsExpandTrigger="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<C-l>"
 let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 
-"SYNTAX CHECKING
-"----------------------------------------------------------------------------
-
-"INDENTATION
-"----------------------------------------------------------------------------
-
-filetype plugin on
-
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd ctermbg=none
-hi IndentGuidesEven ctermbg=black
-let g:indent_guides_enable_on_vim_startup = 1
-
 "FOLDING
 "----------------------------------------------------------------------------
 setlocal foldmethod=syntax
@@ -211,24 +173,6 @@ if has("win32")
   let g:ctrlp_cmd = 'CtrlP'
 endif
 
-if has("nvim")
-  let g:esearch = {
-        \ 'adapter':    'ag',
-        \ 'backend':    'nvim',
-        \ 'out':        'qflist',
-        \ 'batch_size': 1000,
-        \ 'use':        ['visual', 'hlsearch', 'last'],
-        \}
-else
-  let g:esearch = {
-        \ 'adapter':    'ag',
-        \ 'backend':    'vimproc',
-        \ 'out':        'qflist',
-        \ 'batch_size': 1000,
-        \ 'use':        ['visual', 'hlsearch', 'last'],
-        \}
-endif
-
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
 if has("win32")
@@ -241,67 +185,10 @@ endif
 "Map to F8 key
 nmap <F8> :TagbarToggle<CR>
 
-"Typescript
-let g:tagbar_type_typescript = {
-  \ 'ctagstype': 'typescript',
-  \ 'kinds': [
-    \ 'c:classes',
-    \ 'n:modules',
-    \ 'f:functions',
-    \ 'v:variables',
-    \ 'v:varlambdas',
-    \ 'm:members',
-    \ 'i:interfaces',
-    \ 'e:enums',
-  \ ]
-\ }
-
-"CUSTOM COMMANDS
-"----------------------------------------------------------------------------
-
-"Format JSON
-nmap =j :%!python -m json.tool<CR>
-
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
-if has('nvim')
-  filetype plugin indent on
-  let g:deoplete#enable_at_startup = 1
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-  let g:tern#command = ["tern"]
-  let g:tern#arguments = ["--persistent"]
-elseif has('lua')
-  set nocompatible
-  set completeopt+=menuone
-  set rtp+=~/work/neocomplete.vim/
-  set rtp+=~/work/vimproc.vim/
-
-  filetype plugin indent on
-  let g:neocomplete#enable_at_startup = 1
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-else
-  autocmd FileType html,javascript,typescript,css,less let b:vcm_tab_complete = 'omni'
-endif
-
-if has('win32')
-  let g:tsuquyomi_use_local_typescript = 0
-  let g:tsuquyomi_use_dev_node_module = 0
-endif
+autocmd FileType html,javascript,typescript,css,less,php,scss let b:vcm_tab_complete = 'omni'
 
 "SEARCH
 "----------------------------------------------------------------------------
@@ -318,20 +205,5 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 "LINTER
 "----------------------------------------------------------------------------
 let g:ale_fix_on_save = 1
-
-
-"NEOVIM ON WINDOWS
-"----------------------------------------------------------------------------
-
-"Specific to my system in order to use both python versions on windows
-if has("nvim")
-  if has("win32")
-    let g:python3_host_prog='C:/Users/snn/Envs/Neovim3/Scripts/python.exe'
-    let g:python_host_prog='C:/Users/snn/Envs/Neovim2/Scripts/python.exe'
-  endif
-endif
-
-"END
-"----------------------------------------------------------------------------
 
 set secure

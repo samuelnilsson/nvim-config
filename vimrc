@@ -26,7 +26,6 @@ Plug 'lifepillar/vim-solarized8'
 "Auto completion engine
 Plug 'ajh17/VimCompletesMe'
 Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim' "Needed for tsuquyomi
 Plug 'shawncplus/phpcomplete.vim'
 
 "Extended status line
@@ -49,6 +48,7 @@ Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
 Plug 'OrangeT/vim-csharp'
 Plug 'gko/vim-coloresque'
+Plug 'chrisbra/Colorizer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'stanangeloff/php.vim'
 Plug '2072/PHP-Indenting-for-VIm'
@@ -63,8 +63,10 @@ Plug 'scrooloose/nerdcommenter'
 "Display tags in a window
 Plug 'majutsushi/tagbar'
 
-"Show git diff in file
-Plug 'airblade/vim-gitgutter'
+if !has("win32")
+  "Show git diff in file
+  Plug 'airblade/vim-gitgutter'
+endif
 
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
@@ -102,6 +104,9 @@ Plug 'heavenshell/vim-jsdoc'
 
 "Automatic tab insertion on newline
 Plug 'Raimondi/delimitMate'
+
+"Automatically detect indentation style
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
@@ -189,6 +194,11 @@ nmap <F8> :TagbarToggle<CR>
 "----------------------------------------------------------------------------
 
 autocmd FileType html,javascript,typescript,css,less,php,scss let b:vcm_tab_complete = 'omni'
+
+if has("win32")
+  let g:tsuquyomi_use_local_typescript = 0
+  let g:tsuquyomi_use_dev_node_module = 0
+endif
 
 "SEARCH
 "----------------------------------------------------------------------------

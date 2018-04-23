@@ -24,9 +24,13 @@ Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
-Plug 'ajh17/VimCompletesMe'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
+"Auto completion sources
 Plug 'Quramy/tsuquyomi'
-Plug 'shawncplus/phpcomplete.vim'
+Plug 'rudism/deoplete-tsuquyomi'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -193,9 +197,11 @@ nmap <F8> :TagbarToggle<CR>
 "AUTOCOMPLETION
 "----------------------------------------------------------------------------
 
-autocmd FileType html,javascript,typescript,css,less,php,scss let b:vcm_tab_complete = 'omni'
+let g:deoplete#enable_at_startup = 1
 
 if has("win32")
+  let g:python3_host_prog='C:/Python36/python.exe'
+  let g:python_host_prog='C:/Python27/python.exe'
   let g:tsuquyomi_use_local_typescript = 0
   let g:tsuquyomi_use_dev_node_module = 0
 endif

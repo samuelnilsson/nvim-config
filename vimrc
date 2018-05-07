@@ -146,7 +146,7 @@ set encoding=utf8
 "----------------------------------------------------------------------------
 
 syntax enable
-set termguicolors
+let g:solarized_use16 = 1
 colorscheme solarized8_dark
 
 "GIT

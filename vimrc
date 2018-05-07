@@ -36,11 +36,6 @@ Plug 'rudism/deoplete-tsuquyomi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"File icons
-if has("unix")
-	Plug 'ryanoasis/vim-devicons'
-endif
-
 "Syntax checking
 Plug 'w0rp/ale'
 
@@ -111,6 +106,9 @@ Plug 'Raimondi/delimitMate'
 
 "Automatically detect indentation style
 Plug 'tpope/vim-sleuth'
+
+"Easy alignment
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 

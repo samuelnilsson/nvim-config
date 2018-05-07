@@ -1,7 +1,7 @@
 let g:ale_linters = {
-\  'php': ['php'],
+\	'php': ['php'],
 \}
 
 let g:ale_fixers = {
-\  'php': ['trim_whitespace'],
+\	'php': ['trim_whitespace'],
 \}

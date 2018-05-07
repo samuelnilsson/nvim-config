@@ -12,11 +12,11 @@ Plug 'tpope/vim-fugitive'
 
 "Fuzzy file search
 if has("unix")
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 endif
 
 if has("win32")
-  Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'ctrlpvim/ctrlp.vim'
 endif
 
 "Color scheme
@@ -38,7 +38,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 "File icons
 if has("unix")
-  Plug 'ryanoasis/vim-devicons'
+	Plug 'ryanoasis/vim-devicons'
 endif
 
 "Syntax checking
@@ -68,8 +68,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'majutsushi/tagbar'
 
 if !has("win32")
-  "Show git diff in file
-  Plug 'airblade/vim-gitgutter'
+	"Show git diff in file
+	Plug 'airblade/vim-gitgutter'
 endif
 
 "Expand abbreviations
@@ -172,20 +172,20 @@ setlocal foldmethod=syntax
 "----------------------------------------------------------------------------
 
 if has("unix")
-  nnoremap <c-p> :FZF<cr>
-  if executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-  endif
+	nnoremap <c-p> :FZF<cr>
+	if executable('ag')
+		let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+	endif
 endif
 if has("win32")
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_cmd = 'CtrlP'
+	let g:ctrlp_map = '<c-p>'
+	let g:ctrlp_cmd = 'CtrlP'
 endif
 
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
 if has("win32")
-  set backspace=indent,eol,start
+	set backspace=indent,eol,start
 endif
 
 "TAGBAR
@@ -200,10 +200,10 @@ nmap <F8> :TagbarToggle<CR>
 let g:deoplete#enable_at_startup = 1
 
 if has("win32")
-  let g:python3_host_prog='C:/Python36/python.exe'
-  let g:python_host_prog='C:/Python27/python.exe'
-  let g:tsuquyomi_use_local_typescript = 0
-  let g:tsuquyomi_use_dev_node_module = 0
+	let g:python3_host_prog='C:/Python36/python.exe'
+	let g:python_host_prog='C:/Python27/python.exe'
+	let g:tsuquyomi_use_local_typescript = 0
+	let g:tsuquyomi_use_dev_node_module = 0
 endif
 
 "SEARCH
@@ -224,5 +224,9 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 "LINTER
 "----------------------------------------------------------------------------
 let g:ale_fix_on_save = 1
+
+"INDENTATION
+"----------------------------------------------------------------------------
+set tabstop=4
 
 set secure

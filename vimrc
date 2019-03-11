@@ -145,7 +145,7 @@ set encoding=utf8
 
 syntax enable
 let g:solarized_use16 = 1
-colorscheme solarized8_dark
+colorscheme solarized8
 
 "GIT
 "----------------------------------------------------------------------------

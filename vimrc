@@ -32,6 +32,7 @@ Plug 'zchee/deoplete-jedi'
 "Auto completion sources
 Plug 'Quramy/tsuquyomi'
 Plug 'rudism/deoplete-tsuquyomi'
+Plug 'carlitux/deoplete-ternjs'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -135,6 +136,9 @@ let &colorcolumn=join(range(81,999),",")
 "Convenient remap of copying from and to clipboard
 map <Leader>y "*y
 map <Leader>p "*p
+
+"Set python version
+set pyxversion=3
 
 "Enable project specific vimrc files
 set exrc

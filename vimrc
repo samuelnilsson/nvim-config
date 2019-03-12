@@ -27,6 +27,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'zchee/deoplete-jedi'
 
 "Auto completion sources
 Plug 'Quramy/tsuquyomi'
@@ -92,6 +93,9 @@ Plug 'junegunn/goyo.vim'
 "Golang support
 Plug 'fatih/vim-go'
 
+"CS support
+Plug 'OmniSharp/omnisharp-vim'
+
 "Add indent lines
 Plug 'Yggdroot/indentLine'
 
@@ -144,6 +148,7 @@ set encoding=utf8
 "----------------------------------------------------------------------------
 
 syntax enable
+set background=dark
 let g:solarized_use16 = 1
 colorscheme solarized8_dark
 

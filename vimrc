@@ -25,14 +25,20 @@ Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
 Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'zchee/deoplete-jedi'
+if has("win32")
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 "Auto completion sources
-Plug 'Quramy/tsuquyomi'
-Plug 'rudism/deoplete-tsuquyomi'
+if has("nvim")
+	Plug 'mhartington/nvim-typescript'
+else
+	Plug 'Quramy/tsuquyomi'
+	Plug 'rudism/deoplete-tsuquyomi'
+endif
 Plug 'carlitux/deoplete-ternjs'
+Plug 'zchee/deoplete-jedi'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -137,9 +143,6 @@ let &colorcolumn=join(range(81,999),",")
 map <Leader>y "*y
 map <Leader>p "*p
 
-"Set python version
-set pyxversion=3
-
 "Enable project specific vimrc files
 set exrc
 
@@ -207,10 +210,12 @@ nmap <F8> :TagbarToggle<CR>
 let g:deoplete#enable_at_startup = 1
 
 if has("win32")
-	let g:python3_host_prog='C:/Python36/python.exe'
-	let g:python_host_prog='C:/Python27/python.exe'
-	let g:tsuquyomi_use_local_typescript = 0
-	let g:tsuquyomi_use_dev_node_module = 0
+	let g:python3_host_prog='C:/Python37/python3.exe'
+	let g:python_host_prog='C:/Python27/python2.exe'
+	if !has("nvim")
+		let g:tsuquyomi_use_local_typescript = 0
+		let g:tsuquyomi_use_dev_node_module = 0
+	endif
 endif
 
 "SEARCH

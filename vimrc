@@ -53,7 +53,6 @@ Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
-Plug 'OrangeT/vim-csharp'
 Plug 'gko/vim-coloresque'
 Plug 'chrisbra/Colorizer'
 Plug 'kchmck/vim-coffee-script'
@@ -217,6 +216,11 @@ if has("win32")
 		let g:tsuquyomi_use_dev_node_module = 0
 	endif
 endif
+
+let g:deoplete#sources = {}
+let g:deoplete#sources._= []
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#keyword_patterns = {}
 
 "SEARCH
 "----------------------------------------------------------------------------

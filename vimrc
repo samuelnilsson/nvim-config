@@ -24,7 +24,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 if has("win32")
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'

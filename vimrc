@@ -120,6 +120,9 @@ Plug 'tpope/vim-sleuth'
 "Easy alignment
 Plug 'junegunn/vim-easy-align'
 
+"Icons
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 "GENERAL SETTINGS

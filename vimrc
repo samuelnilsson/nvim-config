@@ -221,7 +221,18 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 
 map <Leader>sf :Denite file_rec -default-action=tabopen<CR>
 map <Leader>sl :Denite line<CR>
-map <Leader>sg :Denite grep -default-action=tabopen<CR>
+map <Leader>sg :DeniteProjectDir -buffer-name=grep -default-action=tabopen grep:::!
+
+call denite#custom#var('file_rec', 'command',
+   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts',
+    \ ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 
 "NERDTREE
 "----------------------------------------------------------------------------

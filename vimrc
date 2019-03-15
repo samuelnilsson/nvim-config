@@ -217,10 +217,20 @@ if has("win32")
 	endif
 endif
 
-let g:deoplete#sources = {}
-let g:deoplete#sources._= []
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#keyword_patterns = {}
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+call deoplete#custom#option('sources', {
+			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
+			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'javascript': ['tern', 'ultisnips', 'file'],
+			\ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
+			\ 'typescript': ['typescript', 'ultisnips', 'file'],
+			\ })
+
+call deoplete#custom#var('omni', 'input_patterns', {
+			\ 'cs': '[^. *\t]\.\w*',
+			\})
 
 "SEARCH
 "----------------------------------------------------------------------------

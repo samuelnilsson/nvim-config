@@ -1,11 +1,5 @@
-let g:deoplete#sources.cs = ['omni', 'file', 'buffer', 'dictionary']	
-"let g:deoplete#omni#input_patterns.cs = ['[\w]*']
-"let g:deoplete#omni#input_patterns.cs = '[^. *\t]\.\w*'
-let g:deoplete#omni#input_patterns.cs = '[ \t]*[\w\.]'
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete	
-
-let g:ale_linters = { 'cs': ['OmniSharp'] }
-let g:OmniSharp_highlight_types = 1
+let b:ale_linters = ['OmniSharp']
+let b:OmniSharp_highlight_types = 1
 
 " Update the highlighting whenever leaving insert mode
 autocmd InsertLeave *.cs call OmniSharp#HighlightBuffer()

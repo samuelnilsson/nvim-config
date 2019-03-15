@@ -11,13 +11,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-fugitive'
 
 "Fuzzy file search
-if has("unix")
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
-
-if has("win32")
-	Plug 'ctrlpvim/ctrlp.vim'
-endif
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Color scheme
 Plug 'chriskempson/base16-vim'
@@ -25,7 +19,7 @@ Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-if has("win32")
+if !has("nvim")
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -69,10 +63,8 @@ Plug 'scrooloose/nerdcommenter'
 "Display tags in a window
 Plug 'majutsushi/tagbar'
 
-if !has("win32")
-	"Show git diff in file
-	Plug 'airblade/vim-gitgutter'
-endif
+"Show git diff in file
+Plug 'airblade/vim-gitgutter'
 
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
@@ -90,9 +82,6 @@ Plug 'jiangmiao/auto-pairs'
 "Fast motions
 Plug 'easymotion/vim-easymotion'
 
-"Easy find and replace across multiple files
-Plug 'eugen0329/vim-esearch'
-
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'
 
@@ -101,9 +90,6 @@ Plug 'fatih/vim-go'
 
 "CS support
 Plug 'OmniSharp/omnisharp-vim'
-
-"Add indent lines
-Plug 'Yggdroot/indentLine'
 
 "Auto completion for node
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -180,20 +166,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-r>"
 "----------------------------------------------------------------------------
 setlocal foldmethod=syntax
 
-"FUZZY SEARCH
-"----------------------------------------------------------------------------
-
-if has("unix")
-	nnoremap <c-p> :FZF<cr>
-	if executable('ag')
-		let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-	endif
-endif
-if has("win32")
-	let g:ctrlp_map = '<c-p>'
-	let g:ctrlp_cmd = 'CtrlP'
-endif
-
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
 if has("win32")
@@ -241,8 +213,15 @@ call deoplete#custom#var('omni', 'input_patterns', {
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-"Ctrlp ignore files in gitignore
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"Denite
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+
+map <Leader>sf :Denite file_rec -default-action=tabopen<CR>
+map <Leader>sl :Denite line<CR>
+map <Leader>sg :Denite grep -default-action=tabopen<CR>
 
 "NERDTREE
 "----------------------------------------------------------------------------
@@ -259,3 +238,11 @@ let g:ale_fix_on_save = 1
 set tabstop=4
 
 set secure
+
+"ALIGNMENT
+"----------------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

@@ -105,6 +105,9 @@ Plug 'tpope/vim-sleuth'
 "Easy alignment
 Plug 'junegunn/vim-easy-align'
 
+"Start screen
+Plug 'mhinz/vim-startify'
+
 "Icons
 Plug 'ryanoasis/vim-devicons'
 

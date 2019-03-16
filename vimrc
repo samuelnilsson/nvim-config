@@ -20,23 +20,22 @@ Plug 'lifepillar/vim-solarized8'
 "Auto completion engine
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 if !has("nvim")
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
+   Plug 'roxma/nvim-yarp'
+   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 "Auto completion sources
 if has("nvim")
-	Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
+   Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
 else
-	Plug 'Quramy/tsuquyomi'
-	Plug 'rudism/deoplete-tsuquyomi'
+   Plug 'Quramy/tsuquyomi'
+   Plug 'rudism/deoplete-tsuquyomi'
 endif
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
 
 "Extended status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 "Syntax checking
 Plug 'w0rp/ale', { 'do': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier' }
@@ -169,7 +168,7 @@ setlocal foldmethod=syntax
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
 if has("win32")
-	set backspace=indent,eol,start
+   set backspace=indent,eol,start
 endif
 
 "TAGBAR
@@ -184,28 +183,28 @@ nmap <F8> :TagbarToggle<CR>
 let g:deoplete#enable_at_startup = 1
 
 if has("win32")
-	let g:python3_host_prog='C:/Python37/python3.exe'
-	let g:python_host_prog='C:/Python27/python2.exe'
-	if !has("nvim")
-		let g:tsuquyomi_use_local_typescript = 0
-		let g:tsuquyomi_use_dev_node_module = 0
-	endif
+   let g:python3_host_prog='C:/Python37/python3.exe'
+   let g:python_host_prog='C:/Python27/python2.exe'
+   if !has("nvim")
+      let g:tsuquyomi_use_local_typescript = 0
+      let g:tsuquyomi_use_dev_node_module = 0
+   endif
 endif
 
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 call deoplete#custom#option('sources', {
-			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
-			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'javascript': ['tern', 'ultisnips', 'file'],
-			\ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
-			\ 'typescript': ['typescript', 'ultisnips', 'file'],
-			\ })
+	 \ '_': ['ultisnips', 'around', 'buffer', 'file'],
+	 \ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+	 \ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+	 \ 'javascript': ['tern', 'ultisnips', 'file'],
+	 \ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
+	 \ 'typescript': ['typescript', 'ultisnips', 'file'],
+	 \ })
 
 call deoplete#custom#var('omni', 'input_patterns', {
-			\ 'cs': '[^. *\t]\.\w*',
-			\})
+	 \ 'cs': '[^. *\t]\.\w*',
+	 \})
 
 "SEARCH
 "----------------------------------------------------------------------------
@@ -224,11 +223,11 @@ map <Leader>sl :Denite line<CR>
 map <Leader>sg :DeniteProjectDir -buffer-name=grep -default-action=tabopen grep:::!
 
 call denite#custom#var('file_rec', 'command',
-   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+	 \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'default_opts',
-    \ ['-i', '--vimgrep'])
+	 \ ['-i', '--vimgrep'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
@@ -257,3 +256,33 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"STATUS LINE
+"----------------------------------------------------------------------------
+
+let g:lightline = {
+	 \   'colorscheme': 'solarized',
+	 \   'active': {
+	 \     'left':[ [ 'mode', 'paste' ],
+	 \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+	 \     ]
+	 \   },
+	 \   'component_function': {
+	 \     'gitbranch': 'fugitive#head',
+	 \     'filetype': 'MyFiletype',
+	 \     'fileformat': 'MyFileformat',
+	 \   }
+	 \ }
+let g:lightline.separator = {
+	 \   'left': '', 'right': ''
+	 \}
+let g:lightline.subseparator = {
+	 \   'left': '', 'right': '' 
+	 \}
+function! MyFiletype()
+   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction

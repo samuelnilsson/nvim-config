@@ -26,12 +26,12 @@ endif
 
 "Auto completion sources
 if has("nvim")
-	Plug 'mhartington/nvim-typescript'
+	Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
 else
 	Plug 'Quramy/tsuquyomi'
 	Plug 'rudism/deoplete-tsuquyomi'
 endif
-Plug 'carlitux/deoplete-ternjs'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
 
 "Extended status line
@@ -39,7 +39,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Syntax checking
-Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'do': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier' }
 
 "Highlighting for different languages
 Plug 'HerringtonDarkholme/yats.vim'

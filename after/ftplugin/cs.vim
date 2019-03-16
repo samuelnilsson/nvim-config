@@ -5,7 +5,7 @@ let b:OmniSharp_highlight_types = 1
 autocmd InsertLeave *.cs call OmniSharp#HighlightBuffer()
 
 " The following commands are contextual, based on the cursor position.
-autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>

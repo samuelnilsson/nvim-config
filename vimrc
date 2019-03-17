@@ -1,119 +1,140 @@
 "PLUGINS
 "----------------------------------------------------------------------------
 
-call plug#begin('~/.vim/plugged')
+if &compatible
+	set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-"Required for some async plugins when not using neovim
-if !has("nvim")
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
+if dein#load_state('~/.cache/dein')
+	call dein#begin('~/.cache/dein')
+
+	call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+	"Required for some async plugins when not using neovim
+	if !has("nvim")
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+	endif
+
+	"File explorer
+	call dein#add('Shougo/defx.nvim')
+
+	"Git wrapper
+	call dein#add('tpope/vim-fugitive')
+
+	"Fuzzy file search
+	call dein#add('Shougo/denite.nvim')
+
+	"Color scheme
+	call dein#add('chriskempson/base16-vim')
+	call dein#add('lifepillar/vim-solarized8')
+
+	"Auto completion engine
+	call dein#add('Shougo/deoplete.nvim')
+
+	"Auto completion sources
+	if has("nvim")
+		call dein#add('mhartington/nvim-typescript', {'build': './install.sh && npm install -g typescript'})
+	else
+		call dein#add('Quramy/tsuquyomi')
+		call dein#add('rudism/deoplete-tsuquyomi')
+	endif
+	call dein#add('carlitux/deoplete-ternjs', {'build': 'npm install -g tern'})
+	call dein#add('zchee/deoplete-jedi')
+
+	"Extended status line
+	call dein#add('itchyny/lightline.vim')
+
+	"Syntax checking
+	call dein#add('w0rp/ale', {'build': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier'})
+
+	"Highlighting for different languages
+	call dein#add('HerringtonDarkholme/yats.vim')
+	call dein#add('othree/yajs.vim')
+	call dein#add('groenewege/vim-less')
+	call dein#add('elzr/vim-json')
+	call dein#add('digitaltoad/vim-pug')
+	call dein#add('gko/vim-coloresque')
+	call dein#add('chrisbra/Colorizer')
+	call dein#add('kchmck/vim-coffee-script')
+	call dein#add('stanangeloff/php.vim')
+	call dein#add('2072/PHP-Indenting-for-VIm')
+	call dein#add('cakebaker/scss-syntax.vim')
+
+	"Change surroundings in pairs
+	call dein#add('tpope/vim-surround')
+
+	"Commenting
+	call dein#add('scrooloose/nerdcommenter')
+
+	"Display tags in a window
+	call dein#add('majutsushi/tagbar')
+
+	"Show git diff in file
+	call dein#add('airblade/vim-gitgutter')
+
+	"Expand abbreviations
+	call dein#add('mattn/emmet-vim')
+
+	"Multicursor in Sublime Text style
+	call dein#add('terryma/vim-multiple-cursors')
+
+	"Snippets
+	call dein#add('honza/vim-snippets')
+	call dein#add('SirVer/ultisnips')
+
+	"Auto insert closing characters
+	call dein#add('jiangmiao/auto-pairs')
+
+	"Fast motions
+	call dein#add('easymotion/vim-easymotion')
+
+	"For 'distraction-free' writing of non-code documents
+	call dein#add('junegunn/goyo.vim')
+
+	"Golang support
+	call dein#add('fatih/vim-go')
+
+	"CS support
+	call dein#add('OmniSharp/omnisharp-vim')
+
+	"JS specific features
+	call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
+
+	"Generate JsDoc comments
+	call dein#add('heavenshell/vim-jsdoc')
+
+	"Automatic tab insertion on newline
+	call dein#add('Raimondi/delimitMate')
+
+	"Easy alignment
+	call dein#add('junegunn/vim-easy-align')
+
+	"Start screen
+	call dein#add('mhinz/vim-startify')
+
+	"Icons
+	call dein#add('ryanoasis/vim-devicons')
+
+	call dein#end()
+	call dein#save_state()
 endif
 
-"File explorer
-if has('nvim')
-	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/defx.nvim'
+if dein#check_install()
+	call dein#install()
 endif
 
-"Git wrapper
-Plug 'tpope/vim-fugitive'
+fun DeinClean()
+	call map(dein#check_clean(), "delete(v:val, 'rf')")
+	call dein#recache_runtimepath()
+	echo "Done!"
+endf
 
-"Fuzzy file search
-Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-
-"Color scheme
-Plug 'chriskempson/base16-vim'
-Plug 'lifepillar/vim-solarized8'
-
-"Auto completion engine
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-"Auto completion sources
-if has("nvim")
-	Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
-else
-	Plug 'Quramy/tsuquyomi'
-	Plug 'rudism/deoplete-tsuquyomi'
-endif
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'zchee/deoplete-jedi'
-
-"Extended status line
-Plug 'itchyny/lightline.vim'
-
-"Syntax checking
-Plug 'w0rp/ale', { 'do': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier' }
-
-"Highlighting for different languages
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'groenewege/vim-less'
-Plug 'elzr/vim-json'
-Plug 'digitaltoad/vim-pug'
-Plug 'gko/vim-coloresque'
-Plug 'chrisbra/Colorizer'
-Plug 'kchmck/vim-coffee-script'
-Plug 'stanangeloff/php.vim'
-Plug '2072/PHP-Indenting-for-VIm'
-Plug 'cakebaker/scss-syntax.vim'
-
-"Change surroundings in pairs
-Plug 'tpope/vim-surround'
-
-"Commenting
-Plug 'scrooloose/nerdcommenter'
-
-"Display tags in a window
-Plug 'majutsushi/tagbar'
-
-"Show git diff in file
-Plug 'airblade/vim-gitgutter'
-
-"Expand abbreviations
-Plug 'mattn/emmet-vim'
-
-"Multicursor in Sublime Text style
-Plug 'terryma/vim-multiple-cursors'
-
-"Snippets
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
-
-"Auto insert closing characters
-Plug 'jiangmiao/auto-pairs'
-
-"Fast motions
-Plug 'easymotion/vim-easymotion'
-
-"For 'distraction-free' writing of non-code documents
-Plug 'junegunn/goyo.vim'
-
-"Golang support
-Plug 'fatih/vim-go'
-
-"CS support
-Plug 'OmniSharp/omnisharp-vim'
-
-"Auto completion for node
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
-"Generate JsDoc comments
-Plug 'heavenshell/vim-jsdoc'
-
-"Automatic tab insertion on newline
-Plug 'Raimondi/delimitMate'
-
-"Easy alignment
-Plug 'junegunn/vim-easy-align'
-
-"Start screen
-Plug 'mhinz/vim-startify'
-
-"Icons
-Plug 'ryanoasis/vim-devicons'
-
-call plug#end()
+command DeinUpdate call dein#update()
+command DeinClean call DeinClean()
+command DeinInstall call dein#install()
 
 "GENERAL SETTINGS
 "----------------------------------------------------------------------------

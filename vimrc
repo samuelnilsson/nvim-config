@@ -1,9 +1,9 @@
+set encoding=utf8
+scriptencoding utf-8
+
 "PLUGINS
 "----------------------------------------------------------------------------
 
-if &compatible
-	set nocompatible
-endif
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -13,7 +13,7 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 	"Required for some async plugins when not using neovim
-	if !has("nvim")
+	if !has('nvim')
 		call dein#add('roxma/nvim-yarp')
 		call dein#add('roxma/vim-hug-neovim-rpc')
 	endif
@@ -35,7 +35,7 @@ if dein#load_state('~/.cache/dein')
 	call dein#add('Shougo/deoplete.nvim')
 
 	"Auto completion sources
-	if has("nvim")
+	if has('nvim')
 		call dein#add('mhartington/nvim-typescript', {'build': './install.sh && npm install -g typescript'})
 	else
 		call dein#add('Quramy/tsuquyomi')
@@ -43,12 +43,13 @@ if dein#load_state('~/.cache/dein')
 	endif
 	call dein#add('carlitux/deoplete-ternjs', {'build': 'npm install -g tern'})
 	call dein#add('zchee/deoplete-jedi')
+	call dein#add('Shougo/neco-vim')
 
 	"Extended status line
 	call dein#add('itchyny/lightline.vim')
 
 	"Syntax checking
-	call dein#add('w0rp/ale', {'build': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier'})
+	call dein#add('w0rp/ale', {'build': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier && pip install --user vim-vint'})
 
 	"Highlighting for different languages
 	call dein#add('HerringtonDarkholme/yats.vim')
@@ -129,7 +130,7 @@ endif
 fun DeinClean()
 	call map(dein#check_clean(), "delete(v:val, 'rf')")
 	call dein#recache_runtimepath()
-	echo "Done!"
+	echo 'Done!'
 endf
 
 command DeinUpdate call dein#update()
@@ -147,10 +148,10 @@ set number
 set relativenumber
 
 "Set leader to use comma
-let mapleader=","
+let mapleader=','
 
 "Set line at 80 characters
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(81,999),',')
 
 "Convenient remap of copying from and to clipboard
 map <Leader>y "*y
@@ -158,11 +159,6 @@ map <Leader>p "*p
 
 "Enable project specific vimrc files
 set exrc
-
-"ICONS
-"----------------------------------------------------------------------------
-
-set encoding=utf8
 
 "COLORS
 "----------------------------------------------------------------------------
@@ -183,9 +179,9 @@ set updatetime=250
 "SNIPPETS
 "----------------------------------------------------------------------------
 
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-r>"
+let g:UltiSnipsExpandTrigger='<C-l>'
+let g:UltiSnipsJumpForwardTrigger='<C-l>'
+let g:UltiSnipsJumpBackwardTrigger='<C-r>'
 
 "FOLDING
 "----------------------------------------------------------------------------
@@ -193,7 +189,7 @@ setlocal foldmethod=syntax
 
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
-if has("win32")
+if has('win32')
 	set backspace=indent,eol,start
 endif
 
@@ -208,23 +204,26 @@ nmap <F8> :TagbarToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
 
-if has("win32")
+if has('win32')
 	let g:python3_host_prog='C:/Python37/python3.exe'
 	let g:python_host_prog='C:/Python27/python2.exe'
-	if !has("nvim")
+	if !has('nvim')
 		let g:tsuquyomi_use_local_typescript = 0
 		let g:tsuquyomi_use_dev_node_module = 0
 	endif
 endif
 
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+augroup omnifunc_def
+	autocmd!
+	autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+augroup END
 
 call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
 			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'javascript': ['tern', 'ultisnips', 'file'],
-			\ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
+			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'typescript': ['typescript', 'ultisnips', 'file'],
 			\ })
 
@@ -300,7 +299,7 @@ let g:lightline.separator = {
 			\	'left': '', 'right': ''
 			\}
 let g:lightline.subseparator = {
-			\	'left': '', 'right': '' 
+			\	'left': '', 'right': ''
 			\}
 function! MyFiletype()
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -313,7 +312,10 @@ endfunction
 "DEFX
 "----------------------------------------------------------------------------
 map <Leader>t :Defx<CR>
-autocmd FileType defx call s:defx_my_settings()
+augroup filetype_defx
+	autocmd!
+	autocmd FileType defx call s:defx_my_settings()
+augroup END
 function! s:defx_my_settings() abort
 	" Define mappings
 	nnoremap <silent><buffer><expr> l

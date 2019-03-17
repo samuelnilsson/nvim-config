@@ -3,9 +3,18 @@
 
 call plug#begin('~/.vim/plugged')
 
-"Nerdtree
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+"Required for some async plugins when not using neovim
+if !has("nvim")
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+"File explorer
+if has('nvim')
+	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/defx.nvim'
+endif
 
 "Git wrapper
 Plug 'tpope/vim-fugitive'
@@ -19,17 +28,13 @@ Plug 'lifepillar/vim-solarized8'
 
 "Auto completion engine
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-if !has("nvim")
-   Plug 'roxma/nvim-yarp'
-   Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
 "Auto completion sources
 if has("nvim")
-   Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
+	Plug 'mhartington/nvim-typescript', { 'do': './install.sh && npm install -g typescript' }
 else
-   Plug 'Quramy/tsuquyomi'
-   Plug 'rudism/deoplete-tsuquyomi'
+	Plug 'Quramy/tsuquyomi'
+	Plug 'rudism/deoplete-tsuquyomi'
 endif
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'zchee/deoplete-jedi'
@@ -98,9 +103,6 @@ Plug 'heavenshell/vim-jsdoc'
 
 "Automatic tab insertion on newline
 Plug 'Raimondi/delimitMate'
-
-"Automatically detect indentation style
-Plug 'tpope/vim-sleuth'
 
 "Easy alignment
 Plug 'junegunn/vim-easy-align'
@@ -171,7 +173,7 @@ setlocal foldmethod=syntax
 "WINDOWS SPECIFIC
 "----------------------------------------------------------------------------
 if has("win32")
-   set backspace=indent,eol,start
+	set backspace=indent,eol,start
 endif
 
 "TAGBAR
@@ -186,28 +188,28 @@ nmap <F8> :TagbarToggle<CR>
 let g:deoplete#enable_at_startup = 1
 
 if has("win32")
-   let g:python3_host_prog='C:/Python37/python3.exe'
-   let g:python_host_prog='C:/Python27/python2.exe'
-   if !has("nvim")
-      let g:tsuquyomi_use_local_typescript = 0
-      let g:tsuquyomi_use_dev_node_module = 0
-   endif
+	let g:python3_host_prog='C:/Python37/python3.exe'
+	let g:python_host_prog='C:/Python27/python2.exe'
+	if !has("nvim")
+		let g:tsuquyomi_use_local_typescript = 0
+		let g:tsuquyomi_use_dev_node_module = 0
+	endif
 endif
 
 autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 
 call deoplete#custom#option('sources', {
-	 \ '_': ['ultisnips', 'around', 'buffer', 'file'],
-	 \ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-	 \ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-	 \ 'javascript': ['tern', 'ultisnips', 'file'],
-	 \ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
-	 \ 'typescript': ['typescript', 'ultisnips', 'file'],
-	 \ })
+			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
+			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'javascript': ['tern', 'ultisnips', 'file'],
+			\ 'vim': ['ultisnips', 'around', 'buffer', 'file'],
+			\ 'typescript': ['typescript', 'ultisnips', 'file'],
+			\ })
 
 call deoplete#custom#var('omni', 'input_patterns', {
-	 \ 'cs': '[^. *\t]\.\w*',
-	 \})
+			\ 'cs': '[^. *\t]\.\w*',
+			\})
 
 "SEARCH
 "----------------------------------------------------------------------------
@@ -226,21 +228,15 @@ map <Leader>sl :Denite line<CR>
 map <Leader>sg :DeniteProjectDir -buffer-name=grep -default-action=tabopen grep:::!
 
 call denite#custom#var('file_rec', 'command',
-	 \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+			\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
 call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'default_opts',
-	 \ ['-i', '--vimgrep'])
+			\ ['-i', '--vimgrep'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
-"NERDTREE
-"----------------------------------------------------------------------------
-
-"Do not open automatically
-let g:nerdtree_tabs_open_on_gui_startup = 0
 
 "LINTER
 "----------------------------------------------------------------------------
@@ -248,7 +244,10 @@ let g:ale_fix_on_save = 1
 
 "INDENTATION
 "----------------------------------------------------------------------------
+filetype plugin indent on
 set tabstop=4
+set shiftwidth=4
+set expandtab
 
 set secure
 
@@ -264,28 +263,88 @@ nmap ga <Plug>(EasyAlign)
 "----------------------------------------------------------------------------
 
 let g:lightline = {
-	 \   'colorscheme': 'solarized',
-	 \   'active': {
-	 \     'left':[ [ 'mode', 'paste' ],
-	 \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-	 \     ]
-	 \   },
-	 \   'component_function': {
-	 \     'gitbranch': 'fugitive#head',
-	 \     'filetype': 'MyFiletype',
-	 \     'fileformat': 'MyFileformat',
-	 \   }
-	 \ }
+			\	'colorscheme': 'solarized',
+			\	'active': {
+			\	  'left':[ [ 'mode', 'paste' ],
+			\			   [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+			\	  ]
+			\	},
+			\	'component_function': {
+			\	  'gitbranch': 'fugitive#head',
+			\	  'filetype': 'MyFiletype',
+			\	  'fileformat': 'MyFileformat',
+			\	}
+			\ }
 let g:lightline.separator = {
-	 \   'left': '', 'right': ''
-	 \}
+			\	'left': '', 'right': ''
+			\}
 let g:lightline.subseparator = {
-	 \   'left': '', 'right': '' 
-	 \}
+			\	'left': '', 'right': '' 
+			\}
 function! MyFiletype()
-   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
 function! MyFileformat()
-   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+"DEFX
+"----------------------------------------------------------------------------
+map <Leader>t :Defx<CR>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+	" Define mappings
+	nnoremap <silent><buffer><expr> l
+				\ defx#do_action('open')
+	nnoremap <silent><buffer><expr> y
+				\ defx#do_action('copy')
+	nnoremap <silent><buffer><expr> m
+				\ defx#do_action('move')
+	nnoremap <silent><buffer><expr> p
+				\ defx#do_action('paste')
+	nnoremap <silent><buffer><expr> o
+				\ defx#do_action('open')
+	nnoremap <silent><buffer><expr> v
+				\ defx#do_action('open', 'vsplit')
+	nnoremap <silent><buffer><expr> P
+				\ defx#do_action('open', 'pedit')
+	nnoremap <silent><buffer><expr> z
+				\ defx#do_action('open_or_close_tree')
+	nnoremap <silent><buffer><expr> N
+				\ defx#do_action('new_directory')
+	nnoremap <silent><buffer><expr> n
+				\ defx#do_action('new_file')
+	nnoremap <silent><buffer><expr> s
+				\ defx#do_action('toggle_sort', 'time')
+	nnoremap <silent><buffer><expr> d
+				\ defx#do_action('remove')
+	nnoremap <silent><buffer><expr> r
+				\ defx#do_action('rename')
+	nnoremap <silent><buffer><expr> !
+				\ defx#do_action('execute_command')
+	nnoremap <silent><buffer><expr> yy
+				\ defx#do_action('yank_path')
+	nnoremap <silent><buffer><expr> i
+				\ defx#do_action('toggle_ignored_files')
+	nnoremap <silent><buffer><expr> .
+				\ defx#do_action('repeat')
+	nnoremap <silent><buffer><expr> h
+				\ defx#do_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> q
+				\ defx#do_action('quit')
+	nnoremap <silent><buffer><expr> <Space>
+				\ defx#do_action('toggle_select') . 'j'
+	nnoremap <silent><buffer><expr> *
+				\ defx#do_action('toggle_select_all')
+	nnoremap <silent><buffer><expr> j
+				\ line('.') == line('$') ? 'gg' : 'j'
+	nnoremap <silent><buffer><expr> k
+				\ line('.') == 1 ? 'G' : 'k'
+	nnoremap <silent><buffer><expr> R
+				\ defx#do_action('redraw')
+	nnoremap <silent><buffer><expr> <C-g>
+				\ defx#do_action('print')
+	nnoremap <silent><buffer><expr> cd
+				\ defx#do_action('change_vim_cwd')
 endfunction

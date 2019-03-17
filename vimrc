@@ -244,9 +244,9 @@ call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
 
-map <Leader>sf :Denite file_rec -default-action=tabopen<CR>
+map <Leader>sf :Denite file/rec<CR>
 map <Leader>sl :Denite line<CR>
-map <Leader>sg :DeniteProjectDir -buffer-name=grep -default-action=tabopen grep:::!<CR>
+map <Leader>sg :DeniteProjectDir -buffer-name=grep grep:::!<CR>
 
 call denite#custom#var('file_rec', 'command',
 			\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])

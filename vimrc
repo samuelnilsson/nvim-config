@@ -2,13 +2,16 @@ set encoding=utf8
 scriptencoding utf-8
 
 "PLUGINS
-"----------------------------------------------------------------------------
+"===============================================================================
 
-" Add the dein installation directory into runtimepath
+"plugin-dein-load
+"-------------------------------------------------------------------------------
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+"plugin-list
+"-------------------------------------------------------------------------------
 if dein#load_state('~/.cache/dein')
-	call dein#begin('~/.cache/dein')
+	call dein#begin('~/.cache/dein', [expand('<sfile>')])
 
 	call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
@@ -24,7 +27,7 @@ if dein#load_state('~/.cache/dein')
 	"Git wrapper
 	call dein#add('tpope/vim-fugitive')
 
-	"Fuzzy file search
+	"Fuzzy search
 	call dein#add('Shougo/denite.nvim')
 
 	"Color scheme
@@ -48,10 +51,14 @@ if dein#load_state('~/.cache/dein')
 	"Extended status line
 	call dein#add('itchyny/lightline.vim')
 
-	"Syntax checking
-	call dein#add('w0rp/ale', {'build': 'npm install -g eslint babel-eslint tslint htmlhint typescript prettier && pip install --user vim-vint'})
+	"Linting
+	call dein#add('w0rp/ale', {'build': 'npm install -g ' .
+				\ 'eslint babel-eslint tslint htmlhint typescript prettier ' .
+				\ 'stylelint && ' .
+				\ 'pip install --user vim-vint'
+				\ })
 
-	"Highlighting for different languages
+	"Syntax files
 	call dein#add('HerringtonDarkholme/yats.vim')
 	call dein#add('othree/yajs.vim')
 	call dein#add('groenewege/vim-less')
@@ -73,7 +80,7 @@ if dein#load_state('~/.cache/dein')
 	"Display tags in a window
 	call dein#add('majutsushi/tagbar')
 
-	"Show git diff in file
+	"Display git diff in file
 	call dein#add('airblade/vim-gitgutter')
 
 	"Expand abbreviations
@@ -123,6 +130,12 @@ if dein#load_state('~/.cache/dein')
 	call dein#save_state()
 endif
 
+filetype plugin on
+filetype plugin indent on
+syntax enable
+
+"plugin-dein
+"-------------------------------------------------------------------------------
 if dein#check_install()
 	call dein#install()
 endif
@@ -137,86 +150,18 @@ command DeinUpdate call dein#update()
 command DeinClean call DeinClean()
 command DeinInstall call dein#install()
 
-"GENERAL SETTINGS
+"plugin-gitgutter
 "----------------------------------------------------------------------------
-
-filetype plugin on
-
-"Enable line numbers
-set number
-"Enable relative line numbers
-set relativenumber
-
-"Set leader to use comma
-let mapleader=','
-
-"Set line at 80 characters
-let &colorcolumn=join(range(81,999),',')
-
-"Convenient remap of copying from and to clipboard
-map <Leader>y "*y
-map <Leader>p "*p
-
-"Enable project specific vimrc files
-set exrc
-
-"COLORS
-"----------------------------------------------------------------------------
-
-syntax enable
-set background=dark
-let g:solarized_use16 = 1
-colorscheme solarized8
-
-"GIT
-"----------------------------------------------------------------------------
-
-"Enable gitgutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
-set updatetime=250
 
-"SNIPPETS
+"plugin-tagbar
 "----------------------------------------------------------------------------
+map <Leader>b :TagbarToggle<CR>
 
-let g:UltiSnipsExpandTrigger='<C-l>'
-let g:UltiSnipsJumpForwardTrigger='<C-l>'
-let g:UltiSnipsJumpBackwardTrigger='<C-r>'
-
-"FOLDING
+"plugin-deoplete
 "----------------------------------------------------------------------------
-setlocal foldmethod=syntax
-
-"WINDOWS SPECIFIC
-"----------------------------------------------------------------------------
-if has('win32')
-	set backspace=indent,eol,start
-endif
-
-"TAGBAR
-"----------------------------------------------------------------------------
-
-"Map to F8 key
-nmap <F8> :TagbarToggle<CR>
-
-"AUTOCOMPLETION
-"----------------------------------------------------------------------------
-
 let g:deoplete#enable_at_startup = 1
-
-if has('win32')
-	let g:python3_host_prog='C:/Python37/python3.exe'
-	let g:python_host_prog='C:/Python27/python2.exe'
-	if !has('nvim')
-		let g:tsuquyomi_use_local_typescript = 0
-		let g:tsuquyomi_use_dev_node_module = 0
-	endif
-endif
-
-augroup omnifunc_def
-	autocmd!
-	autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-augroup END
 
 call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
@@ -231,13 +176,8 @@ call deoplete#custom#var('omni', 'input_patterns', {
 			\ 'cs': '[^. *\t]\.\w*',
 			\})
 
-"SEARCH
+"plugin-denite
 "----------------------------------------------------------------------------
-
-set hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-
-"Denite
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
@@ -258,30 +198,17 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-"LINTER
+"plugin-ale
 "----------------------------------------------------------------------------
 let g:ale_fix_on_save = 1
 
-"INDENTATION
+"plugin-easyalign
 "----------------------------------------------------------------------------
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-set secure
-
-"ALIGNMENT
-"----------------------------------------------------------------------------
-" Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-"STATUS LINE
+"plugin-lightline
 "----------------------------------------------------------------------------
-
 let g:lightline = {
 			\	'colorscheme': 'solarized',
 			\	'active': {
@@ -301,6 +228,7 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
 			\	'left': '', 'right': ''
 			\}
+
 function! MyFiletype()
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
@@ -309,7 +237,7 @@ function! MyFileformat()
 	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-"DEFX
+"plugin-defx
 "----------------------------------------------------------------------------
 map <Leader>t :Defx<CR>
 augroup filetype_defx
@@ -371,3 +299,52 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> cd
 				\ defx#do_action('change_vim_cwd')
 endfunction
+
+"GENERAL
+"===============================================================================
+
+"Enable line numbers
+set number
+"Enable relative line numbers
+set relativenumber
+
+"Set leader to use comma
+let mapleader=','
+
+"Set line at 80 characters
+let &colorcolumn=join(range(81,999),',')
+
+"Always use clipboard
+set clipboard+=unnamedplus
+
+"Enable project specific vimrc files
+set exrc
+
+"Fold method
+setlocal foldmethod=syntax
+
+"COLORS
+"===============================================================================
+set background=dark
+let g:solarized_use16 = 1
+colorscheme solarized8
+
+"WINDOWS SPECIFIC
+"===============================================================================
+if has('win32')
+	set backspace=indent,eol,start
+	let g:python3_host_prog='C:/Python37/python3.exe'
+	let g:python_host_prog='C:/Python27/python2.exe'
+endif
+
+"SEARCH
+"===============================================================================
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+"INDENTATION
+"===============================================================================
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set secure

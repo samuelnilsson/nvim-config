@@ -1,27 +1,35 @@
 let b:ale_linters = ['OmniSharp']
 let b:OmniSharp_highlight_types = 1
 
-" Update the highlighting whenever leaving insert mode
-autocmd InsertLeave *.cs call OmniSharp#HighlightBuffer()
+augroup omnifunc_def
+	autocmd!
+	autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+augroup END
 
-" The following commands are contextual, based on the cursor position.
-autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+augroup filetype_cs
+	autocmd!
+	" Update the highlighting whenever leaving insert mode
+	autocmd InsertLeave *.cs call OmniSharp#HighlightBuffer()
 
-" Finds members in the current buffer
-autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+	" The following commands are contextual, based on the cursor position.
+	autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
 
-autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
-autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+	" Finds members in the current buffer
+	autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
 
-" Navigate up and down by method/property/field
-autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
-autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
+	autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+	autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+	autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+	" Navigate up and down by method/property/field
+	autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+	autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>

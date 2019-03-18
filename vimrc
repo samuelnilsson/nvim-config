@@ -157,6 +157,7 @@ command DeinInstall call dein#install()
 "----------------------------------------------------------------------------
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
+set updatetime=200
 
 "plugin-tagbar
 "----------------------------------------------------------------------------

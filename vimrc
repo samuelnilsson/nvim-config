@@ -16,7 +16,7 @@ elseif has('win32')
 	set runtimepath^=~\.cache\dein\repos\github.com\Shougo\dein.vim
 	let deindir = '~\.cache\dein'
 else
-	set runtimepath+=~/.cache/dein
+	set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 	let deindir = '~/.cache/dein'
 endif
 
@@ -70,7 +70,7 @@ if dein#load_state(deindir)
 	"Linting
 	call dein#add('w0rp/ale', {'build': 'npm install -g ' .
 				\ 'eslint babel-eslint tslint htmlhint typescript prettier ' .
-				\ 'stylelint && ' .
+				\ 'stylelint stylelint-config-recommended && ' .
 				\ 'pip install --user vim-vint'
 				\ })
 

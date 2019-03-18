@@ -126,6 +126,10 @@ if dein#load_state('~/.cache/dein')
 	"Start screen
 	call dein#add('mhinz/vim-startify')
 
+	"Session management
+	call dein#add('xolox/vim-misc')
+	call dein#add('xolox/vim-session')
+
 	"Icons
 	call dein#add('ryanoasis/vim-devicons')
 

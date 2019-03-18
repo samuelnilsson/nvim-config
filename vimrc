@@ -12,6 +12,9 @@ let mapleader=','
 if has('win32') && has('nvim')
 	set runtimepath^=~\AppData\Local\nvim\dein\repos\github.com\Shougo\dein.vim
 	let deindir = '~\AppData\Local\nvim\dein'
+elseif has('win32')
+	set runtimepath^=~\.cache\dein\repos\github.com\Shougo\dein.vim
+	let deindir = '~\.cache\dein'
 else
 	set runtimepath+=~/.cache/dein
 	let deindir = '~/.cache/dein'
@@ -321,6 +324,15 @@ endfunction
 "plugin-vim-session
 "----------------------------------------------------------------------------
 let g:session_autoload = 0
+if has('nvim')
+	let g:session_directory = '~/AppData/Local/nvim-data/session'
+endif
+
+"plugin-ultisnips
+"----------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger='<C-l>'
+let g:UltiSnipsJumpForwardTrigger='<C-l>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
 "GENERAL
 "===============================================================================

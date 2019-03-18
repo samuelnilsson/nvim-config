@@ -1,6 +1,9 @@
 set encoding=utf8
 scriptencoding utf-8
 
+"Set leader to use comma
+let mapleader=','
+
 "PLUGINS
 "===============================================================================
 
@@ -307,9 +310,6 @@ endfunction
 set number
 "Enable relative line numbers
 set relativenumber
-
-"Set leader to use comma
-let mapleader=','
 
 "Set line at 80 characters
 let &colorcolumn=join(range(81,999),',')

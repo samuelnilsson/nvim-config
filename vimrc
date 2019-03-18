@@ -9,14 +9,24 @@ let mapleader=','
 
 "plugin-dein-load
 "-------------------------------------------------------------------------------
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if has('win32') && has('nvim')
+	set runtimepath^=~\AppData\Local\nvim\dein\repos\github.com\Shougo\dein.vim
+	let deindir = '~\AppData\Local\nvim\dein'
+else
+	set runtimepath+=~/.cache/dein
+	let deindir = '~/.cache/dein'
+endif
 
 "plugin-list
 "-------------------------------------------------------------------------------
-if dein#load_state('~/.cache/dein')
-	call dein#begin('~/.cache/dein', [expand('<sfile>')])
-
-	call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state(deindir)
+	if has('win32') && has('nvim')
+		call dein#begin('~/AppData/Local/nvim/dein/', [expand('<sfile>')])
+		call dein#add('~/AppData/Local/nvim/dein/repos/github.com/Shougo/dein.vim')
+	else
+		call dein#begin('~/.cache/dein', [expand('<sfile>')])
+		call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+	endif
 
 	"Required for some async plugins when not using neovim
 	if !has('nvim')
@@ -42,7 +52,7 @@ if dein#load_state('~/.cache/dein')
 
 	"Auto completion sources
 	if has('nvim')
-		call dein#add('mhartington/nvim-typescript', {'build': './install.sh && npm install -g typescript'})
+		call dein#add('mhartington/nvim-typescript', {'build': 'sh ./install.sh && npm install -g typescript'})
 	else
 		call dein#add('Quramy/tsuquyomi')
 		call dein#add('rudism/deoplete-tsuquyomi')
@@ -308,6 +318,10 @@ function! s:defx_my_settings() abort
 				\ defx#do_action('change_vim_cwd')
 endfunction
 
+"plugin-vim-session
+"----------------------------------------------------------------------------
+let g:session_autoload = 0
+
 "GENERAL
 "===============================================================================
 
@@ -320,7 +334,9 @@ set relativenumber
 let &colorcolumn=join(range(81,999),',')
 
 "Always use clipboard
-set clipboard+=unnamedplus
+if !has('win32')
+	set clipboard+=unnamedplus
+endif
 
 "Enable project specific vimrc files
 set exrc

@@ -381,3 +381,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set secure
+
+"TERMINAL MODE
+"===============================================================================
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+endif

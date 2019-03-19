@@ -184,6 +184,17 @@ map <Leader>b :TagbarToggle<CR>
 "----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 
+augroup omnicomplete
+	au FileType css,sass,scss,less setl omnifunc=csscomplete#CompleteCSS
+augroup END
+
+call deoplete#custom#option('omni_patterns', {
+			\ 'css': '[^;:\t {}\n!][-\w]*',
+			\ 'less': '[^;:\t {}\n!][-\w]*',
+			\ 'scss': '[^;:\t {}\n!][-\w]*',
+			\ 'sass': '[^;:\t {}\n!][-\w]*',
+			\})
+
 call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
 			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],

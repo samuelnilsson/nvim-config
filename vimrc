@@ -381,3 +381,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set secure
+
+"RESIZE
+"===============================================================================
+nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>h+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>

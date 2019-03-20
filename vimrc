@@ -184,17 +184,6 @@ map <Leader>b :TagbarToggle<CR>
 "----------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 
-augroup omnicomplete
-	au FileType css,sass,scss,less setl omnifunc=csscomplete#CompleteCSS
-augroup END
-
-call deoplete#custom#option('omni_patterns', {
-			\ 'css': '[^;:\t {}\n!][-\w]*',
-			\ 'less': '[^;:\t {}\n!][-\w]*',
-			\ 'scss': '[^;:\t {}\n!][-\w]*',
-			\ 'sass': '[^;:\t {}\n!][-\w]*',
-			\})
-
 call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
 			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
@@ -202,10 +191,25 @@ call deoplete#custom#option('sources', {
 			\ 'javascript': ['tern', 'ultisnips', 'file'],
 			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'typescript': ['typescript', 'ultisnips', 'file'],
+			\ 'css': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'scss': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'less': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ })
+
+call deoplete#custom#source('omni', 'functions', {
+			\ 'css': 'csscomplete#CompleteCSS',
+			\ 'scss': 'csscomplete#CompleteCSS',
+			\ 'sass': 'csscomplete#CompleteCSS',
+			\ 'less': 'csscomplete#CompleteCSS',
 			\ })
 
 call deoplete#custom#var('omni', 'input_patterns', {
 			\ 'cs': '[^. *\t]\.\w*',
+			\ 'css': '[^;:\t {}\n!][-\w]*',
+			\ 'less': '[^;:\t {}\n!][-\w]*',
+			\ 'scss': '[^;:\t {}\n!][-\w]*',
+			\ 'sass': '[^;:\t {}\n!][-\w]*',
 			\})
 
 "plugin-denite

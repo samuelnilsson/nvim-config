@@ -16,7 +16,7 @@ elseif has('win32')
 	set runtimepath^=~\.cache\dein\repos\github.com\Shougo\dein.vim
 	let deindir = '~\.cache\dein'
 else
-	set runtimepath+=~/.cache/dein
+	set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 	let deindir = '~/.cache/dein'
 endif
 
@@ -70,7 +70,7 @@ if dein#load_state(deindir)
 	"Linting
 	call dein#add('w0rp/ale', {'build': 'npm install -g ' .
 				\ 'eslint babel-eslint tslint htmlhint typescript prettier ' .
-				\ 'stylelint && ' .
+				\ 'stylelint stylelint-config-recommended && ' .
 				\ 'pip install --user vim-vint'
 				\ })
 
@@ -191,10 +191,25 @@ call deoplete#custom#option('sources', {
 			\ 'javascript': ['tern', 'ultisnips', 'file'],
 			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'typescript': ['typescript', 'ultisnips', 'file'],
+			\ 'css': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'scss': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'less': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ })
+
+call deoplete#custom#source('omni', 'functions', {
+			\ 'css': 'csscomplete#CompleteCSS',
+			\ 'scss': 'csscomplete#CompleteCSS',
+			\ 'sass': 'csscomplete#CompleteCSS',
+			\ 'less': 'csscomplete#CompleteCSS',
 			\ })
 
 call deoplete#custom#var('omni', 'input_patterns', {
 			\ 'cs': '[^. *\t]\.\w*',
+			\ 'css': '[^;:\t {}\n!][-\w]*',
+			\ 'less': '[^;:\t {}\n!][-\w]*',
+			\ 'scss': '[^;:\t {}\n!][-\w]*',
+			\ 'sass': '[^;:\t {}\n!][-\w]*',
 			\})
 
 "plugin-denite
@@ -381,6 +396,12 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set secure
+
+"TERMINAL MODE
+"===============================================================================
+if has('nvim')
+	tnoremap <Esc> <C-\><C-n>
+endif
 
 "RESIZE
 "===============================================================================

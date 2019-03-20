@@ -63,6 +63,7 @@ if dein#load_state(deindir)
 	call dein#add('carlitux/deoplete-ternjs', {'build': 'npm install -g tern'})
 	call dein#add('zchee/deoplete-jedi')
 	call dein#add('Shougo/neco-vim')
+	call dein#add('othree/html5.vim')
 
 	"Extended status line
 	call dein#add('itchyny/lightline.vim')
@@ -188,7 +189,6 @@ call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
 			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'css': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'javascript': ['tern', 'ultisnips', 'file'],
 			\ 'less': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
@@ -196,6 +196,10 @@ call deoplete#custom#option('sources', {
 			\ 'typescript': ['typescript', 'ultisnips', 'file'],
 			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
 			\ })
+
+call deoplete#custom#option('omni_patterns', {
+			\ 'html': ['<[^>^\/]*', '</[a-zA-Z0-9-]*'],
+			\})
 
 call deoplete#custom#source('omni', 'functions', {
 			\ 'css': 'csscomplete#CompleteCSS',

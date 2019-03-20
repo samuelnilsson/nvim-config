@@ -171,49 +171,49 @@ command DeinClean call DeinClean()
 command DeinInstall call dein#install()
 
 "plugin-gitgutter
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
 set updatetime=200
 
 "plugin-tagbar
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 map <Leader>b :TagbarToggle<CR>
 
 "plugin-deoplete
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
 
 call deoplete#custom#option('sources', {
 			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
-			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
 			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'javascript': ['tern', 'ultisnips', 'file'],
-			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'typescript': ['typescript', 'ultisnips', 'file'],
 			\ 'css': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'scss': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'html': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'javascript': ['tern', 'ultisnips', 'file'],
 			\ 'less': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'scss': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
+			\ 'typescript': ['typescript', 'ultisnips', 'file'],
+			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
 			\ })
 
 call deoplete#custom#source('omni', 'functions', {
 			\ 'css': 'csscomplete#CompleteCSS',
-			\ 'scss': 'csscomplete#CompleteCSS',
-			\ 'sass': 'csscomplete#CompleteCSS',
 			\ 'less': 'csscomplete#CompleteCSS',
+			\ 'sass': 'csscomplete#CompleteCSS',
+			\ 'scss': 'csscomplete#CompleteCSS',
 			\ })
 
 call deoplete#custom#var('omni', 'input_patterns', {
 			\ 'cs': '[^. *\t]\.\w*',
 			\ 'css': '[^;:\t {}\n!][-\w]*',
 			\ 'less': '[^;:\t {}\n!][-\w]*',
-			\ 'scss': '[^;:\t {}\n!][-\w]*',
 			\ 'sass': '[^;:\t {}\n!][-\w]*',
+			\ 'scss': '[^;:\t {}\n!][-\w]*',
 			\})
 
 "plugin-denite
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
@@ -235,16 +235,16 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 "plugin-ale
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:ale_fix_on_save = 1
 
 "plugin-easyalign
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "plugin-lightline
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:lightline = {
 			\	'colorscheme': 'solarized',
 			\	'active': {
@@ -274,7 +274,7 @@ function! MyFileformat()
 endfunction
 
 "plugin-defx
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 map <Leader>t :Defx<CR>
 augroup filetype_defx
 	autocmd!
@@ -337,14 +337,14 @@ function! s:defx_my_settings() abort
 endfunction
 
 "plugin-vim-session
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:session_autoload = 0
 if has('nvim')
 	let g:session_directory = '~/AppData/Local/nvim-data/session'
 endif
 
 "plugin-ultisnips
-"----------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger='<C-l>'
 let g:UltiSnipsJumpForwardTrigger='<C-l>'
 let g:UltiSnipsJumpBackwardTrigger='<C-k>'

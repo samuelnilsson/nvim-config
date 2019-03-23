@@ -353,6 +353,10 @@ let g:UltiSnipsExpandTrigger='<C-l>'
 let g:UltiSnipsJumpForwardTrigger='<C-l>'
 let g:UltiSnipsJumpBackwardTrigger='<C-k>'
 
+"plugin-nvim-typescript
+"-------------------------------------------------------------------------------
+let g:nvim_typescript#diagnostics_enable = 0
+
 "GENERAL
 "===============================================================================
 

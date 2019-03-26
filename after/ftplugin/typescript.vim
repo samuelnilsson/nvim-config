@@ -1,6 +1,10 @@
 let g:ale_linters = {'typescript': ['tslint', 'tsserver']}
 let g:ale_fixers = {'typescript': ['tslint', 'prettier']}
 
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 augroup filetype_typescript
 	autocmd!
 	autocmd Filetype typescript nnoremap <buffer> <Leader>gd :TSDef<CR>

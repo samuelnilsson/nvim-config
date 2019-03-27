@@ -48,7 +48,6 @@ if dein#load_state(deindir)
 
 	"Color scheme
 	call dein#add('chriskempson/base16-vim')
-	call dein#add('lifepillar/vim-solarized8')
 
 	"Auto completion engine
 	call dein#add('Shougo/deoplete.nvim')
@@ -66,7 +65,8 @@ if dein#load_state(deindir)
 	call dein#add('othree/html5.vim')
 
 	"Extended status line
-	call dein#add('itchyny/lightline.vim')
+	call dein#add('vim-airline/vim-airline')
+	call dein#add('vim-airline/vim-airline-themes')
 
 	"Linting
 	call dein#add('w0rp/ale', {'build': 'npm install -g ' .
@@ -247,35 +247,13 @@ let g:ale_fix_on_save = 1
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-"plugin-lightline
+"plugin-airline
 "-------------------------------------------------------------------------------
-let g:lightline = {
-			\	'colorscheme': 'solarized',
-			\	'active': {
-			\	  'left':[ [ 'mode', 'paste' ],
-			\			   [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-			\	  ]
-			\	},
-			\	'component_function': {
-			\	  'gitbranch': 'fugitive#head',
-			\	  'filetype': 'MyFiletype',
-			\	  'fileformat': 'MyFileformat',
-			\	}
-			\ }
-let g:lightline.separator = {
-			\	'left': '', 'right': ''
-			\}
-let g:lightline.subseparator = {
-			\	'left': '', 'right': ''
-			\}
-
-function! MyFiletype()
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline_theme = 'base16_tomorrow'
 
 "plugin-defx
 "-------------------------------------------------------------------------------
@@ -382,8 +360,8 @@ setlocal foldmethod=syntax
 "COLORS
 "===============================================================================
 set background=dark
-let g:solarized_use16 = 1
-colorscheme solarized8
+let base16colorspace=256
+colorscheme base16-tomorrow-night
 
 "WINDOWS SPECIFIC
 "===============================================================================

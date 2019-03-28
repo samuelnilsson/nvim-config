@@ -227,7 +227,7 @@ map <Leader>sf :Denite file/rec<CR>
 map <Leader>sl :Denite line<CR>
 map <Leader>sg :DeniteProjectDir -buffer-name=grep grep:::!<CR>
 
-call denite#custom#var('file_rec', 'command',
+call denite#custom#var('file/rec', 'command',
 			\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
 call denite#custom#var('grep', 'command', ['ag'])

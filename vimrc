@@ -268,6 +268,9 @@ let g:airline_theme = 'base16_tomorrow'
 "-------------------------------------------------------------------------------
 map <Leader>t :NERDTreeToggle<CR>
 
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
 "plugin-vim-session
 "-------------------------------------------------------------------------------
 let g:session_autoload = 0

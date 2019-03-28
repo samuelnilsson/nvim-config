@@ -38,7 +38,7 @@ if dein#load_state(deindir)
 	endif
 
 	"File explorer
-	call dein#add('Shougo/defx.nvim')
+	call dein#add('scrooloose/nerdtree')
 
 	"Git wrapper
 	call dein#add('tpope/vim-fugitive')
@@ -264,68 +264,9 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme = 'base16_tomorrow'
 
-"plugin-defx
+"plugin-nerdtree
 "-------------------------------------------------------------------------------
-map <Leader>t :Defx<CR>
-augroup filetype_defx
-	autocmd!
-	autocmd FileType defx call s:defx_my_settings()
-augroup END
-function! s:defx_my_settings() abort
-	" Define mappings
-	nnoremap <silent><buffer><expr> l
-				\ defx#do_action('open')
-	nnoremap <silent><buffer><expr> y
-				\ defx#do_action('copy')
-	nnoremap <silent><buffer><expr> m
-				\ defx#do_action('move')
-	nnoremap <silent><buffer><expr> p
-				\ defx#do_action('paste')
-	nnoremap <silent><buffer><expr> o
-				\ defx#do_action('open')
-	nnoremap <silent><buffer><expr> v
-				\ defx#do_action('open', 'vsplit')
-	nnoremap <silent><buffer><expr> P
-				\ defx#do_action('open', 'pedit')
-	nnoremap <silent><buffer><expr> z
-				\ defx#do_action('open_or_close_tree')
-	nnoremap <silent><buffer><expr> N
-				\ defx#do_action('new_directory')
-	nnoremap <silent><buffer><expr> n
-				\ defx#do_action('new_file')
-	nnoremap <silent><buffer><expr> s
-				\ defx#do_action('toggle_sort', 'time')
-	nnoremap <silent><buffer><expr> d
-				\ defx#do_action('remove')
-	nnoremap <silent><buffer><expr> r
-				\ defx#do_action('rename')
-	nnoremap <silent><buffer><expr> !
-				\ defx#do_action('execute_command')
-	nnoremap <silent><buffer><expr> yy
-				\ defx#do_action('yank_path')
-	nnoremap <silent><buffer><expr> i
-				\ defx#do_action('toggle_ignored_files')
-	nnoremap <silent><buffer><expr> .
-				\ defx#do_action('repeat')
-	nnoremap <silent><buffer><expr> h
-				\ defx#do_action('cd', ['..'])
-	nnoremap <silent><buffer><expr> q
-				\ defx#do_action('quit')
-	nnoremap <silent><buffer><expr> <Space>
-				\ defx#do_action('toggle_select') . 'j'
-	nnoremap <silent><buffer><expr> *
-				\ defx#do_action('toggle_select_all')
-	nnoremap <silent><buffer><expr> j
-				\ line('.') == line('$') ? 'gg' : 'j'
-	nnoremap <silent><buffer><expr> k
-				\ line('.') == 1 ? 'G' : 'k'
-	nnoremap <silent><buffer><expr> R
-				\ defx#do_action('redraw')
-	nnoremap <silent><buffer><expr> <C-g>
-				\ defx#do_action('print')
-	nnoremap <silent><buffer><expr> cd
-				\ defx#do_action('change_vim_cwd')
-endfunction
+map <Leader>t :NERDTreeToggle<CR>
 
 "plugin-vim-session
 "-------------------------------------------------------------------------------

@@ -348,3 +348,12 @@ nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>h+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+"GUI
+"===============================================================================
+if exists('g:GtkGuiLoaded')
+	call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
+	call rpcnotify(1, 'Gui', 'Font', 'DejaVuSansMono Nerd Font 11')
+	call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
+	let &cul=0
+endif

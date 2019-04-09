@@ -355,5 +355,8 @@ if exists('g:GtkGuiLoaded')
 	call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
 	call rpcnotify(1, 'Gui', 'Font', 'DejaVuSansMono Nerd Font 11')
 	call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
-	let &cul=0
+	" Fixes some windows performance issues
+	if has("win32")
+		let &cul=0
+	endif
 endif

@@ -295,6 +295,8 @@ let g:nvim_typescript#diagnostics_enable = 0
 set number
 "Enable relative line numbers
 set relativenumber
+"Enable cursorline
+set cursorline
 
 "Always use clipboard
 if !has('win32')

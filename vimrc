@@ -310,6 +310,9 @@ set exrc
 "Fold method
 setlocal foldmethod=syntax
 
+"Hide tildes for blank lines
+highlight EndOfBuffer ctermfg=black ctermbg=black
+
 "COLORS
 "===============================================================================
 set background=dark

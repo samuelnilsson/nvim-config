@@ -296,9 +296,6 @@ set number
 "Enable relative line numbers
 set relativenumber
 
-"Set line at 80 characters
-let &colorcolumn=join(range(81,999),',')
-
 "Always use clipboard
 if !has('win32')
 	set clipboard+=unnamedplus

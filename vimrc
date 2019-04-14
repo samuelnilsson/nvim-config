@@ -308,7 +308,9 @@ set exrc
 setlocal foldmethod=syntax
 
 "Hide tildes for blank lines
-highlight EndOfBuffer ctermfg=black ctermbg=black
+augroup highlight
+	autocmd BufReadPre,FileReadPre * highlight EndOfBuffer ctermfg=black ctermbg=black
+augroup END
 
 "COLORS
 "===============================================================================

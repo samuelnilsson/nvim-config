@@ -7,166 +7,128 @@ let mapleader=','
 "PLUGINS
 "===============================================================================
 
-"plugin-dein-load
-"-------------------------------------------------------------------------------
-if has('win32') && has('nvim')
-	set runtimepath^=~\AppData\Local\nvim\dein\repos\github.com\Shougo\dein.vim
-	let deindir = '~\AppData\Local\nvim\dein'
-elseif has('win32')
-	set runtimepath^=~\.cache\dein\repos\github.com\Shougo\dein.vim
-	let deindir = '~\.cache\dein'
-else
-	set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-	let deindir = '~/.cache/dein'
-endif
-
 "plugin-list
 "-------------------------------------------------------------------------------
-if dein#load_state(deindir)
-	if has('win32') && has('nvim')
-		call dein#begin('~/AppData/Local/nvim/dein/', [expand('<sfile>')])
-		call dein#add('~/AppData/Local/nvim/dein/repos/github.com/Shougo/dein.vim')
-	else
-		call dein#begin('~/.cache/dein', [expand('<sfile>')])
-		call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-	endif
+call plug#begin('~/.vim/plugged')
 
-	"Required for some async plugins when not using neovim
-	if !has('nvim')
-		call dein#add('roxma/nvim-yarp')
-		call dein#add('roxma/vim-hug-neovim-rpc')
-	endif
-
-	"File explorer
-	call dein#add('scrooloose/nerdtree')
-
-	"Git wrapper
-	call dein#add('tpope/vim-fugitive')
-
-	"Fuzzy search
-	call dein#add('Shougo/denite.nvim')
-
-	"Color scheme
-	call dein#add('chriskempson/base16-vim')
-
-	"Auto completion engine
-	call dein#add('Shougo/deoplete.nvim')
-
-	"Auto completion sources
-	if has('nvim')
-		call dein#add('mhartington/nvim-typescript', {'build': 'sh ./install.sh && npm install -g typescript'})
-	else
-		call dein#add('Quramy/tsuquyomi')
-		call dein#add('rudism/deoplete-tsuquyomi')
-	endif
-	call dein#add('carlitux/deoplete-ternjs', {'build': 'npm install -g tern'})
-	call dein#add('zchee/deoplete-jedi')
-	call dein#add('Shougo/neco-vim')
-	call dein#add('othree/html5.vim')
-
-	"Extended status line
-	call dein#add('vim-airline/vim-airline')
-	call dein#add('vim-airline/vim-airline-themes')
-
-	"Linting
-	call dein#add('w0rp/ale', {'build': 'npm install -g ' .
-				\ 'eslint babel-eslint tslint htmlhint typescript prettier ' .
-				\ 'stylelint stylelint-config-recommended && ' .
-				\ 'pip install --user vim-vint'
-				\ })
-
-	"Syntax files
-	call dein#add('HerringtonDarkholme/yats.vim')
-	call dein#add('othree/yajs.vim')
-	call dein#add('groenewege/vim-less')
-	call dein#add('elzr/vim-json')
-	call dein#add('digitaltoad/vim-pug')
-	call dein#add('gko/vim-coloresque')
-	call dein#add('chrisbra/Colorizer')
-	call dein#add('kchmck/vim-coffee-script')
-	call dein#add('stanangeloff/php.vim')
-	call dein#add('2072/PHP-Indenting-for-VIm')
-	call dein#add('cakebaker/scss-syntax.vim')
-
-	"Change surroundings in pairs
-	call dein#add('tpope/vim-surround')
-
-	"Commenting
-	call dein#add('scrooloose/nerdcommenter')
-
-	"Display tags in a window
-	call dein#add('majutsushi/tagbar')
-
-	"Display git diff in file
-	call dein#add('airblade/vim-gitgutter')
-
-	"Expand abbreviations
-	call dein#add('mattn/emmet-vim')
-
-	"Multicursor in Sublime Text style
-	call dein#add('terryma/vim-multiple-cursors')
-
-	"Snippets
-	call dein#add('honza/vim-snippets')
-	call dein#add('SirVer/ultisnips')
-
-	"Auto insert closing characters
-	call dein#add('jiangmiao/auto-pairs')
-
-	"Fast motions
-	call dein#add('easymotion/vim-easymotion')
-
-	"For 'distraction-free' writing of non-code documents
-	call dein#add('junegunn/goyo.vim')
-
-	"Golang support
-	call dein#add('fatih/vim-go')
-
-	"CS support
-	call dein#add('OmniSharp/omnisharp-vim')
-
-	"JS specific features
-	call dein#add('ternjs/tern_for_vim', {'build': 'npm install'})
-
-	"Generate JsDoc comments
-	call dein#add('heavenshell/vim-jsdoc')
-
-	"Automatic tab insertion on newline
-	call dein#add('Raimondi/delimitMate')
-
-	"Easy alignment
-	call dein#add('junegunn/vim-easy-align')
-
-	"Start screen
-	call dein#add('mhinz/vim-startify')
-
-	"Session management
-	call dein#add('xolox/vim-misc')
-	call dein#add('xolox/vim-session')
-
-	call dein#end()
-	call dein#save_state()
+"Required for some async plugins when not using neovim
+if !has('nvim')
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+"File explorer
+Plug 'scrooloose/nerdtree'
+
+"Git wrapper
+Plug 'tpope/vim-fugitive'
+
+"Fuzzy search
+Plug 'Shougo/denite.nvim'
+
+"Color scheme
+Plug 'chriskempson/base16-vim'
+
+"Auto completion engine
+Plug 'Shougo/deoplete.nvim'
+
+"Auto completion sources
+if has('nvim')
+	Plug 'mhartington/nvim-typescript', {'do': 'sh ./install.sh && npm install -g typescript'}
+else
+	Plug 'Quramy/tsuquyomi'
+	Plug 'rudism/deoplete-tsuquyomi'
+endif
+Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neco-vim'
+Plug 'othree/html5.vim'
+
+"Extended status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+"Linting
+Plug 'w0rp/ale', {'do': 'npm install -g
+			\ eslint babel-eslint tslint htmlhint typescript prettier
+			\ stylelint stylelint-config-recommended &&
+			\ pip install --user vim-vint'
+			\ }
+
+"Syntax files
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'othree/yajs.vim'
+Plug 'groenewege/vim-less'
+Plug 'elzr/vim-json'
+Plug 'digitaltoad/vim-pug'
+Plug 'gko/vim-coloresque'
+Plug 'chrisbra/Colorizer'
+Plug 'kchmck/vim-coffee-script'
+Plug 'stanangeloff/php.vim'
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'cakebaker/scss-syntax.vim'
+
+"Change surroundings in pairs
+Plug 'tpope/vim-surround'
+
+"Commenting
+Plug 'scrooloose/nerdcommenter'
+
+"Display tags in a window
+Plug 'majutsushi/tagbar'
+
+"Display git diff in file
+Plug 'airblade/vim-gitgutter'
+
+"Expand abbreviations
+Plug 'mattn/emmet-vim'
+
+"Multicursor in Sublime Text style
+Plug 'terryma/vim-multiple-cursors'
+
+"Snippets
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+
+"Auto insert closing characters
+Plug 'jiangmiao/auto-pairs'
+
+"Fast motions
+Plug 'easymotion/vim-easymotion'
+
+"For 'distraction-free' writing of non-code documents
+Plug 'junegunn/goyo.vim'
+
+"Golang support
+Plug 'fatih/vim-go'
+
+"CS support
+Plug 'OmniSharp/omnisharp-vim'
+
+"JS specific features
+Plug 'ternjs/tern_for_vim', {'build': 'npm install'}
+
+"Generate JsDoc comments
+Plug 'heavenshell/vim-jsdoc'
+
+"Automatic tab insertion on newline
+Plug 'Raimondi/delimitMate'
+
+"Easy alignment
+Plug 'junegunn/vim-easy-align'
+
+"Start screen
+Plug 'mhinz/vim-startify'
+
+"Session management
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
+call plug#end()
 
 filetype plugin on
 filetype plugin indent on
 syntax enable
-
-"plugin-dein
-"-------------------------------------------------------------------------------
-if dein#check_install()
-	call dein#install()
-endif
-
-fun DeinClean()
-	call map(dein#check_clean(), "delete(v:val, 'rf')")
-	call dein#recache_runtimepath()
-	echo 'Done!'
-endf
-
-command DeinUpdate call dein#update()
-command DeinClean call DeinClean()
-command DeinInstall call dein#install()
 
 "plugin-gitgutter
 "-------------------------------------------------------------------------------

@@ -319,7 +319,7 @@ if exists('g:GtkGuiLoaded')
 	call rpcnotify(1, 'Gui', 'Font', 'Fira Code 11')
 	call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
 	" Fixes some windows performance issues
-	if has("win32")
+	if has('win32')
 		let &cursorline=0
 	endif
 endif

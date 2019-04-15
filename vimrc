@@ -273,11 +273,19 @@ augroup highlight
 	autocmd VimEnter,BufReadPre,FileReadPre * highlight NonText ctermfg=black ctermbg=black
 augroup END
 
+"Set list characters
+set list
+set listchars=
+set listchars+=tab:▶\ 
+set listchars+=trail:·
+set listchars+=space:·
+
 "COLORS
 "===============================================================================
 set background=dark
 let base16colorspace=256
 colorscheme base16-tomorrow-night
+hi Whitespace ctermfg=19 guifg=19
 
 "WINDOWS SPECIFIC
 "===============================================================================

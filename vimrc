@@ -270,7 +270,7 @@ setlocal foldmethod=syntax
 
 "Hide tildes for blank lines
 augroup highlight
-	autocmd VimEnter,BufReadPre,FileReadPre * highlight EndOfBuffer ctermfg=black ctermbg=black
+	autocmd VimEnter,BufReadPre,FileReadPre * highlight NonText ctermfg=black ctermbg=black
 augroup END
 
 "COLORS

@@ -274,9 +274,7 @@ augroup END
 "Set list characters
 set list
 set listchars=
-set listchars+=tab:▶\ 
-set listchars+=trail:·
-set listchars+=space:·
+set listchars+=tab:▏\ ,trail:·,space:·
 
 "Set column indicator at 81 columns
 set colorcolumn=81

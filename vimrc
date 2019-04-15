@@ -61,8 +61,6 @@ Plug 'othree/yajs.vim'
 Plug 'groenewege/vim-less'
 Plug 'elzr/vim-json'
 Plug 'digitaltoad/vim-pug'
-Plug 'gko/vim-coloresque'
-Plug 'chrisbra/Colorizer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'stanangeloff/php.vim'
 Plug '2072/PHP-Indenting-for-VIm'
@@ -280,12 +278,16 @@ set listchars+=tab:▶\
 set listchars+=trail:·
 set listchars+=space:·
 
+"Set column indicator at 81 columns
+set colorcolumn=81
+
 "COLORS
 "===============================================================================
 set background=dark
 let base16colorspace=256
 colorscheme base16-tomorrow-night
 hi Whitespace ctermfg=19 guifg=19
+hi ColorColumn ctermbg=18 guibg=18
 
 "WINDOWS SPECIFIC
 "===============================================================================

@@ -144,9 +144,6 @@ if dein#load_state(deindir)
 	call dein#add('xolox/vim-misc')
 	call dein#add('xolox/vim-session')
 
-	"Icons
-	call dein#add('ryanoasis/vim-devicons')
-
 	call dein#end()
 	call dein#save_state()
 endif
@@ -259,7 +256,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme = 'base16_tomorrow'
@@ -268,8 +265,8 @@ let g:airline_theme = 'base16_tomorrow'
 "-------------------------------------------------------------------------------
 map <Leader>t :NERDTreeToggle<CR>
 
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeDirArrowExpandable = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
 
 "plugin-vim-session
 "-------------------------------------------------------------------------------
@@ -311,7 +308,7 @@ setlocal foldmethod=syntax
 
 "Hide tildes for blank lines
 augroup highlight
-	autocmd BufReadPre,FileReadPre * highlight EndOfBuffer ctermfg=black ctermbg=black
+	autocmd VimEnter,BufReadPre,FileReadPre * highlight EndOfBuffer ctermfg=black ctermbg=black
 augroup END
 
 "COLORS
@@ -357,10 +354,10 @@ nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
 "===============================================================================
 if exists('g:GtkGuiLoaded')
 	call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
-	call rpcnotify(1, 'Gui', 'Font', 'DejaVuSansMono Nerd Font 11')
+	call rpcnotify(1, 'Gui', 'Font', 'Fira Code 11')
 	call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
 	" Fixes some windows performance issues
 	if has("win32")
-		let &cul=0
+		let &cursorline=0
 	endif
 endif

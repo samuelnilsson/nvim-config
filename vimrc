@@ -1,4 +1,4 @@
-set encoding=utf8
+set encoding=utf-8
 scriptencoding utf-8
 
 "Set leader to use comma
@@ -27,7 +27,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'Shougo/denite.nvim'
 
 "Color scheme
-Plug 'chriskempson/base16-vim'
+if has("nvim")
+	Plug 'chriskempson/base16-vim'
+else
+	Plug 'danielwe/base16-vim'
+endif
 
 "Auto completion engine
 Plug 'Shougo/deoplete.nvim'

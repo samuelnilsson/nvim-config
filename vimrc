@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 
 "Required for some async plugins when not using neovim
 if !has('nvim')
-	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
@@ -34,18 +33,20 @@ else
 endif
 
 "Auto completion engine
-Plug 'Shougo/deoplete.nvim'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
 
 "Auto completion sources
-if has('nvim')
-	Plug 'mhartington/nvim-typescript', {'do': 'sh ./install.sh && npm install -g typescript'}
-else
-	Plug 'Quramy/tsuquyomi'
-	Plug 'rudism/deoplete-tsuquyomi'
-endif
-Plug 'carlitux/deoplete-ternjs', {'do': 'npm install -g tern'}
-Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/neco-vim'
+Plug 'ncm2/nvim-typescript', {'do': 'sh ./install.sh && npm install -g typescript'}
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-tern', {'do': 'npm install && npm install -g tern'}
+Plug 'ncm2/ncm2-html-subscope'
 Plug 'othree/html5.vim'
 
 "Extended status line
@@ -142,40 +143,31 @@ set updatetime=200
 "-------------------------------------------------------------------------------
 map <Leader>b :TagbarToggle<CR>
 
-"plugin-deoplete
+"plugin-ncm2
 "-------------------------------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
-call deoplete#custom#option('sources', {
-			\ '_': ['ultisnips', 'around', 'buffer', 'file'],
-			\ 'cs': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'css': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'javascript': ['tern', 'ultisnips', 'file'],
-			\ 'less': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'sass': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'scss': ['omni', 'ultisnips', 'around', 'buffer', 'file'],
-			\ 'typescript': ['typescript', 'ultisnips', 'file'],
-			\ 'vim': ['vim', 'ultisnips', 'around', 'buffer', 'file'],
+au User Ncm2Plugin call ncm2#register_source({
+			\ 'name' : 'html',
+			\ 'priority': 9,
+			\ 'scope': ['html'],
+			\ 'mark': 'html',
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': ['<[^>]*'],
+			\ 'on_complete': ['ncm2#on_complete#omni', 'htmlcomplete#CompleteTags'],
 			\ })
 
-call deoplete#custom#option('omni_patterns', {
-			\ 'html': ['<[^>^\/]*', '</[a-zA-Z0-9-]*'],
-			\})
-
-call deoplete#custom#source('omni', 'functions', {
-			\ 'css': 'csscomplete#CompleteCSS',
-			\ 'less': 'csscomplete#CompleteCSS',
-			\ 'sass': 'csscomplete#CompleteCSS',
-			\ 'scss': 'csscomplete#CompleteCSS',
+au User Ncm2Plugin call ncm2#register_source({
+			\ 'name' : 'c#',
+			\ 'priority': 9,
+			\ 'scope': ['cs'],
+			\ 'mark': 'cs',
+			\ 'word_pattern': '\w+',
+			\ 'complete_pattern': ['^. *\t]\.\w*'],
+			\ 'on_complete': ['ncm2#on_complete#omni', 'OmniSharp#Complete'],
 			\ })
 
-call deoplete#custom#var('omni', 'input_patterns', {
-			\ 'cs': '[^. *\t]\.\w*',
-			\ 'css': '[^;:\t {}\n!][-\w]*',
-			\ 'less': '[^;:\t {}\n!][-\w]*',
-			\ 'sass': '[^;:\t {}\n!][-\w]*',
-			\ 'scss': '[^;:\t {}\n!][-\w]*',
-			\})
 
 "plugin-denite
 "-------------------------------------------------------------------------------

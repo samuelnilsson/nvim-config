@@ -31,32 +31,15 @@ Plug 'Shougo/denite.nvim'
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-
-"Auto completion sources
-Plug 'ncm2/nvim-typescript', {'do': 'sh ./install.sh && npm install -g typescript'}
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-Plug 'ncm2/ncm2-github'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-tern', {'do': 'npm install && npm install -g tern'}
-Plug 'ncm2/ncm2-html-subscope'
-Plug 'othree/html5.vim'
+if has('win32')
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.cmd'}
+else
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+endif
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-"Linting
-Plug 'w0rp/ale', {'do': 'npm install -g
-			\ eslint babel-eslint tslint htmlhint typescript prettier
-			\ stylelint stylelint-config-recommended &&
-			\ pip install --user vim-vint'
-			\ }
 
 "Syntax files
 Plug 'HerringtonDarkholme/yats.vim'
@@ -141,32 +124,6 @@ set updatetime=200
 "-------------------------------------------------------------------------------
 map <Leader>b :TagbarToggle<CR>
 
-"plugin-ncm2
-"-------------------------------------------------------------------------------
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-au User Ncm2Plugin call ncm2#register_source({
-			\ 'name' : 'html',
-			\ 'priority': 9,
-			\ 'scope': ['html'],
-			\ 'mark': 'html',
-			\ 'word_pattern': '\w+',
-			\ 'complete_pattern': ['<[^>]*'],
-			\ 'on_complete': ['ncm2#on_complete#omni', 'htmlcomplete#CompleteTags'],
-			\ })
-
-au User Ncm2Plugin call ncm2#register_source({
-			\ 'name' : 'c#',
-			\ 'priority': 9,
-			\ 'scope': ['cs'],
-			\ 'mark': 'cs',
-			\ 'word_pattern': '\w+',
-			\ 'complete_pattern': ['^. *\t]\.\w*'],
-			\ 'on_complete': ['ncm2#on_complete#omni', 'OmniSharp#Complete'],
-			\ })
-
-
 "plugin-denite
 "-------------------------------------------------------------------------------
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
@@ -188,10 +145,6 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
-"plugin-ale
-"-------------------------------------------------------------------------------
-let g:ale_fix_on_save = 1
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------

@@ -8,6 +8,7 @@ link_file()
 	then
 		echo "Skipped linking $link since it already exists."
 	else
+        mkdir -p "$(dirname "$link")"
 		ln -s "$file" "$link"
 	fi
 }
@@ -21,6 +22,7 @@ copy_file()
 	then
 		echo "Skipped copying $copy since it already exists."
 	else
+        mkdir -p "$(dirname "$copy")"
 		cp "$file" "$copy"
 		copied=true
 	fi
@@ -28,6 +30,7 @@ copy_file()
 
 # Link linter default configurations
 link_file $BASEDIR/langconfigs/eslintrc.json $HOME/.eslintrc.json
+link_file $BASEDIR/coc-settings.json $HOME/.config/nvim/coc-settings.json
 copy_file $BASEDIR/langconfigs/stylelintrc.json $HOME/.stylelintrc.json
 if [ "$copied" = true ]
 then

@@ -1,3 +1,5 @@
+set rtp+=~/.vim
+
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -26,11 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Shougo/denite.nvim'
 
 "Color scheme
-if has("nvim")
-	Plug 'chriskempson/base16-vim'
-else
-	Plug 'danielwe/base16-vim'
-endif
+Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
 Plug 'ncm2/ncm2'
@@ -315,15 +313,3 @@ nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>h+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
-
-"GUI
-"===============================================================================
-if exists('g:GtkGuiLoaded')
-	call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
-	call rpcnotify(1, 'Gui', 'Font', 'Fira Code 11')
-	call rpcnotify(1, 'Gui', 'Option', 'Popupmenu', 0)
-	" Fixes some windows performance issues
-	if has('win32')
-		let &cursorline=0
-	endif
-endif

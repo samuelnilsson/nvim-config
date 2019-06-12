@@ -24,9 +24,6 @@ Plug 'scrooloose/nerdtree'
 "Git wrapper
 Plug 'tpope/vim-fugitive'
 
-"Fuzzy search
-Plug 'Shougo/denite.nvim'
-
 "Color scheme
 Plug 'chriskempson/base16-vim'
 
@@ -120,31 +117,29 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
 set updatetime=200
 
+"plugin-fugitive
+"-------------------------------------------------------------------------------
+map gc :Gcommit -a<CR>
+map ga :Git add -A<CR>
+map gs :Gstatus<CR>
+map gf :Gfetch<CR>
+map gm :Gmerge<CR>
+map gl :Git log<CR>
+
 "plugin-tagbar
 "-------------------------------------------------------------------------------
 map <Leader>b :TagbarToggle<CR>
 
-"plugin-denite
+"plugin-coc
 "-------------------------------------------------------------------------------
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-
-map <Leader>sf :Denite file/rec<CR>
-map <Leader>sl :Denite line<CR>
-map <Leader>sg :DeniteProjectDir -buffer-name=grep grep:::!<CR>
-
-call denite#custom#var('file/rec', 'command',
-			\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts',
-			\ ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+map <Leader>sf :CocList files<CR>
+map <Leader>sw :CocList words<CR>
+map <Leader>sg :CocList grep<CR>
+map <Leader>ss :CocList symbols<CR>
+map <Leader>se :CocList extensions<CR>
+map <Leader>gc :CocList commits<CR>
+map <Leader>gb :CocList branches<CR>
+map <Leader>gs :CocList gstatus<CR>
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------
@@ -187,10 +182,6 @@ endif
 let g:UltiSnipsExpandTrigger='<C-l>'
 let g:UltiSnipsJumpForwardTrigger='<C-l>'
 let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-
-"plugin-nvim-typescript
-"-------------------------------------------------------------------------------
-let g:nvim_typescript#diagnostics_enable = 0
 
 "GENERAL
 "===============================================================================

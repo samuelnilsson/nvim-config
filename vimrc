@@ -141,6 +141,10 @@ map <Leader>gc :CocList commits<CR>
 map <Leader>gb :CocList branches<CR>
 map <Leader>gs :CocList gstatus<CR>
 
+map <Leader>rn <Plug>(coc-rename)
+map <Leader>f <Plug>(coc-format-selected)
+map <Leader>qf <Plug>(coc-fix-current)
+
 "plugin-easyalign
 "-------------------------------------------------------------------------------
 xmap ga <Plug>(EasyAlign)

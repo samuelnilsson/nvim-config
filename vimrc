@@ -125,6 +125,9 @@ map gs :Gstatus<CR>
 map gf :Gfetch<CR>
 map gm :Gmerge<CR>
 map gl :Git log<CR>
+map gd :Gdiff<CR>
+map gu :Gpush<CR>
+map gp :Gpull<CR>
 
 "plugin-tagbar
 "-------------------------------------------------------------------------------
@@ -144,6 +147,11 @@ map <Leader>gs :CocList gstatus<CR>
 map <Leader>rn <Plug>(coc-rename)
 map <Leader>f <Plug>(coc-format-selected)
 map <Leader>qf <Plug>(coc-fix-current)
+
+map <Leader>gd <Plug>(coc-definition)
+map <Leader>gt <Plug>(coc-type-definition)
+map <Leader>gi <Plug>(coc-implementation)
+map <Leader>gr <Plug>(coc-references)
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------

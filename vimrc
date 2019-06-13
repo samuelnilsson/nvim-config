@@ -123,8 +123,8 @@ map gc :Gcommit -a<CR>
 map ga :Git add -A<CR>
 map gs :Gstatus<CR>
 map gf :Gfetch<CR>
-map gm :Gmerge<cr>
-map gl :Git log<cr>
+map gm :Gmerge<CR>
+map gl :Git log<CR>
 map gd :Gdiff<CR>
 map gu :Gpush<CR>
 map gp :Gpull<CR>

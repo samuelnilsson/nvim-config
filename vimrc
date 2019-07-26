@@ -35,15 +35,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Syntax files
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'othree/yajs.vim'
-Plug 'groenewege/vim-less'
-Plug 'elzr/vim-json'
-Plug 'digitaltoad/vim-pug'
-Plug 'kchmck/vim-coffee-script'
-Plug 'stanangeloff/php.vim'
-Plug '2072/PHP-Indenting-for-VIm'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'sheerun/vim-polyglot'
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'

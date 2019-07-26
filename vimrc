@@ -28,11 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-if has('win32')
-	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.cmd'}
-else
-	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -83,9 +79,6 @@ Plug 'junegunn/goyo.vim'
 "Golang support
 Plug 'fatih/vim-go'
 
-"CS support
-Plug 'OmniSharp/omnisharp-vim'
-
 "JS specific features
 Plug 'ternjs/tern_for_vim', {'build': 'npm install'}
 
@@ -135,6 +128,11 @@ map <Leader>b :TagbarToggle<CR>
 
 "plugin-coc
 "-------------------------------------------------------------------------------
+call coc#add_extension('coc-snippets')
+call coc#add_extension('coc-lists')
+call coc#add_extension('coc-git')
+call coc#add_extension('coc-highlight')
+
 map <Leader>sf :CocList files<CR>
 map <Leader>sw :CocList words<CR>
 map <Leader>sg :CocList grep<CR>
@@ -152,6 +150,17 @@ map <Leader>gd <Plug>(coc-definition)
 map <Leader>gt <Plug>(coc-type-definition)
 map <Leader>gi <Plug>(coc-implementation)
 map <Leader>gr <Plug>(coc-references)
+
+"Show documentation in preview window
+map <Leader>sd :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------

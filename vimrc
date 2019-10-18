@@ -53,6 +53,9 @@ Plug 'vim-airline/vim-airline-themes'
 "Syntax files
 Plug 'sheerun/vim-polyglot'
 
+"C# language server
+Plug 'OmniSharp/omnisharp-vim'
+
 "File type icons
 if !has('win32')
     Plug 'ryanoasis/vim-devicons'
@@ -171,7 +174,7 @@ endfunction
 "-------------------------------------------------------------------------------
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'cs': ['OmniSharp'],
             \   'vim': ['vint'],
             \}
 
@@ -220,17 +223,22 @@ else
     let g:airline_right_sep = ''
     let g:airline_symbols.branch = ''
     let g:airline_symbols.readonly = ''
-    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.maxlinenr = ' '
     let g:airline_symbols.linenr = ''
     let g:airline_symbols.paste = ''
     let g:airline_symbols.whitespace = ''
     let g:airline_symbols.spell = '暈'
-    let g:airline_symbols.notexists = ''
+    let g:airline_symbols.notexists = ' '
     let g:airline#extensions#tabline#left_sep = ''
     let g:airline#extensions#tabline#left_alt_sep = ''
 endif
 
 let g:airline#extensions#tabline#enabled = 1
+
+"plugin-omnisharp
+"-------------------------------------------------------------------------------
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_highlight_types = 2
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

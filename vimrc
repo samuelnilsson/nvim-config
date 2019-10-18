@@ -28,19 +28,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-tslint-plugin', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-css', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-html', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-json', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-python', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'iamcco/coc-vimlsp', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-yaml', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-snippets', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-lists', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-git', { 'do': 'npm install --production --frozen-lockfile' }
-Plug 'neoclide/coc-highlight', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'

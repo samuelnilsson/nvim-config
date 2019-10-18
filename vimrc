@@ -180,7 +180,10 @@ let g:ale_fixers = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 
-if !has('win32')
+if has('win32')
+    let g:ale_sign_warning = '⚠️'
+    let g:ale_sign_error = '✕'
+else
     let g:ale_sign_warning = ''
     let g:ale_sign_error = ''
 endif

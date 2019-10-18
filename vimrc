@@ -187,6 +187,8 @@ if has('win32')
     let g:airline_symbols.whitespace = '☲'
     let g:airline_symbols.spell = 'Ꞩ'
     let g:airline_symbols.notexists = 'Ɇ'
+    let g:airline#extensions#tabline#left_sep = ''
+    let g:airline#extensions#tabline#left_alt_sep = ''
 else
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
@@ -198,11 +200,11 @@ else
     let g:airline_symbols.whitespace = ''
     let g:airline_symbols.spell = '暈'
     let g:airline_symbols.notexists = ''
+    let g:airline#extensions#tabline#left_sep = ''
+    let g:airline#extensions#tabline#left_alt_sep = ''
 endif
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

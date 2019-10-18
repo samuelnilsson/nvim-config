@@ -28,7 +28,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-yaml', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -122,11 +135,6 @@ map <Leader>b :TagbarToggle<CR>
 
 "plugin-coc
 "-------------------------------------------------------------------------------
-call coc#add_extension('coc-snippets')
-call coc#add_extension('coc-lists')
-call coc#add_extension('coc-git')
-call coc#add_extension('coc-highlight')
-
 map <Leader>sf :CocList files<CR>
 map <Leader>sw :CocList words<CR>
 map <Leader>sg :CocList grep<CR>
@@ -191,6 +199,10 @@ else
     let g:airline_symbols.spell = '暈'
     let g:airline_symbols.notexists = ''
 endif
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

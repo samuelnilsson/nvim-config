@@ -29,6 +29,18 @@ Plug 'chriskempson/base16-vim'
 
 "Auto completion engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-tsserver', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-tslint-plugin', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-css', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-html', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-json', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-python', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'iamcco/coc-vimlsp', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-yaml', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-lists', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-git', { 'do': 'npm install --production --frozen-lockfile' }
+Plug 'neoclide/coc-highlight', { 'do': 'npm install --production --frozen-lockfile' }
 
 "Extended status line
 Plug 'vim-airline/vim-airline'
@@ -120,11 +132,6 @@ map <Leader>b :TagbarToggle<CR>
 
 "plugin-coc
 "-------------------------------------------------------------------------------
-call coc#add_extension('coc-snippets')
-call coc#add_extension('coc-lists')
-call coc#add_extension('coc-git')
-call coc#add_extension('coc-highlight')
-
 map <Leader>sf :CocList files<CR>
 map <Leader>sw :CocList words<CR>
 map <Leader>sg :CocList grep<CR>
@@ -175,6 +182,10 @@ let g:airline_symbols.whitespace = '☲'
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_theme = 'base16_tomorrow'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

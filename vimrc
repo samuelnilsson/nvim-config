@@ -37,6 +37,11 @@ Plug 'vim-airline/vim-airline-themes'
 "Syntax files
 Plug 'sheerun/vim-polyglot'
 
+"File type icons
+if !has("win32")
+    Plug 'ryanoasis/vim-devicons'
+endif
+
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
 
@@ -67,9 +72,6 @@ Plug 'easymotion/vim-easymotion'
 
 "For 'distraction-free' writing of non-code documents
 Plug 'junegunn/goyo.vim'
-
-"Golang support
-Plug 'fatih/vim-go'
 
 "JS specific features
 Plug 'ternjs/tern_for_vim', {'build': 'npm install'}
@@ -161,20 +163,34 @@ nmap ga <Plug>(EasyAlign)
 
 "plugin-airline
 "-------------------------------------------------------------------------------
+let g:airline_theme = 'base16_tomorrow'
+
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.branch = 'ᚠ'
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = '☲'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_theme = 'base16_tomorrow'
+if has('win32')
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_symbols.branch = 'ᚠ'
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.linenr = '☰'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.whitespace = '☲'
+    let g:airline_symbols.spell = 'Ꞩ'
+    let g:airline_symbols.notexists = 'Ɇ'
+else
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.linenr = ''
+    let g:airline_symbols.paste = ''
+    let g:airline_symbols.whitespace = ''
+    let g:airline_symbols.spell = '暈'
+    let g:airline_symbols.notexists = ''
+endif
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

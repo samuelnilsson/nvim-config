@@ -256,6 +256,8 @@ augroup END
 set list
 set listchars=
 set listchars+=tab:▏\ ,trail:·,space:·
+set fillchars=
+set fillchars+=vert:▏
 
 "Set column indicator at 81 columns
 set colorcolumn=81
@@ -267,6 +269,12 @@ let base16colorspace=256
 colorscheme base16-tomorrow-night
 hi Whitespace ctermfg=19 guifg=19
 hi ColorColumn ctermbg=18 guibg=18
+hi LineNr ctermbg=NONE guibg=NONE ctermfg=08 guifg=08
+hi CursorLineNr ctermfg=02 guifg=02
+hi DiffAdd ctermbg=NONE guibg=NONE ctermfg=10 guifg=10
+hi DiffChange ctermbg=NONE guibg=NONE ctermfg=03 guifg=03
+hi DiffDelete ctermbg=NONE guibg=NONE ctermfg=09 guifg=09
+hi VertSplit ctermbg=NONE guibg=NONE
 
 "WINDOWS SPECIFIC
 "===============================================================================

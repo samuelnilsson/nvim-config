@@ -46,6 +46,9 @@ Plug 'neoclide/coc-neco'
 "Linting
 Plug 'dense-analysis/ale'
 
+"Code formatting
+Plug 'editorconfig/editorconfig-vim'
+
 "Extended status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -192,6 +195,10 @@ else
 endif
 
 let g:airline#extensions#ale#enabled = 1
+
+"plugin-editorconfig
+"-------------------------------------------------------------------------------
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------

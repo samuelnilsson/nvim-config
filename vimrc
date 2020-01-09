@@ -305,6 +305,7 @@ set colorcolumn=81
 
 "COLORS
 "===============================================================================
+set termguicolors
 set background=dark
 let base16colorspace=256
 colorscheme base16-tomorrow-night
@@ -327,8 +328,7 @@ hi ALEWarningSign ctermfg=3 ctermbg=none guifg=3 guibg=none
 "===============================================================================
 if has('win32')
     set backspace=indent,eol,start
-    let g:python3_host_prog='C:/Python37/python3.exe'
-    let g:python_host_prog='C:/Python27/python2.exe'
+    let g:python3_host_prog='C:/Python38/python.exe'
 endif
 
 "SEARCH

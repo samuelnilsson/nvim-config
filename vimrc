@@ -303,6 +303,8 @@ set fillchars+=vert:▏
 "Set column indicator at 81 columns
 set colorcolumn=81
 
+set pyxversion=3
+
 "COLORS
 "===============================================================================
 set termguicolors
@@ -323,13 +325,6 @@ hi ALEError ctermbg=1 guibg=1 ctermfg=0 guifg=0
 hi ALEWarning ctermbg=3 guibg=3 ctermfg=0 guifg=0
 hi ALEErrorSign ctermfg=1 ctermbg=none guifg=1 guibg=none
 hi ALEWarningSign ctermfg=3 ctermbg=none guifg=3 guibg=none
-
-"WINDOWS SPECIFIC
-"===============================================================================
-if has('win32')
-    set backspace=indent,eol,start
-    let g:python3_host_prog='C:/Python38/python.exe'
-endif
 
 "SEARCH
 "===============================================================================

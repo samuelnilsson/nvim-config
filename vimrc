@@ -114,6 +114,9 @@ Plug 'mhinz/vim-startify'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+"README reload
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
+
 call plug#end()
 
 filetype plugin on
@@ -350,3 +353,7 @@ nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>h+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+"MARKDOWN
+"===============================================================================
+let g:mkdp_browser = 'chromium'

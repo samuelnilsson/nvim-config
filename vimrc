@@ -117,6 +117,9 @@ Plug 'xolox/vim-session'
 "README reload
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
 
+"Highlight matching characters
+Plug 'andymass/vim-matchup'
+
 call plug#end()
 
 filetype plugin on

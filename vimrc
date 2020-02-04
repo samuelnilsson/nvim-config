@@ -30,7 +30,6 @@ Plug 'chriskempson/base16-vim'
 "Auto completion engine
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
@@ -41,6 +40,7 @@ Plug 'neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-eslint', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 

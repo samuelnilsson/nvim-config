@@ -1,4 +1,5 @@
 {
   "diagnostic.displayByAle": true,
-  "list.source.grep.command": "ag"
+  "list.source.grep.command": "ag",
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "css", "Markdown", "scss", "html"]
 }

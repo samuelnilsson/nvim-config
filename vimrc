@@ -74,9 +74,6 @@ Plug 'scrooloose/nerdcommenter'
 "Display tags in a window
 Plug 'majutsushi/tagbar'
 
-"Display git diff in file
-Plug 'airblade/vim-gitgutter'
-
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
 
@@ -121,17 +118,14 @@ Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
 "Highlight matching characters
 Plug 'andymass/vim-matchup'
 
+"Automatic tab detection
+Plug 'tpope/vim-sleuth'
+
 call plug#end()
 
 filetype plugin on
 filetype plugin indent on
 syntax enable
-
-"plugin-gitgutter
-"-------------------------------------------------------------------------------
-let g:gitgutter_enabled = 1
-let g:gitgutter_async = 1
-set updatetime=200
 
 "plugin-fugitive
 "-------------------------------------------------------------------------------
@@ -205,7 +199,7 @@ let g:airline#extensions#ale#enabled = 1
 
 "plugin-editorconfig
 "-------------------------------------------------------------------------------
-let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------
@@ -340,10 +334,10 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 "INDENTATION
 "===============================================================================
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set secure
+let g:sleuth_automatic = 0
+if len(findfile('.editorconfig', '.;')) == 0
+    Sleuth
+endif
 
 "TERMINAL MODE
 "===============================================================================

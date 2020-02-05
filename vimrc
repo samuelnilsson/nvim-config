@@ -336,7 +336,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "===============================================================================
 let g:sleuth_automatic = 0
 if len(findfile('.editorconfig', '.;')) == 0
-    Sleuth
+    autocmd VimEnter * Sleuth
 endif
 
 "TERMINAL MODE

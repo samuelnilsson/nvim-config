@@ -124,7 +124,7 @@ Plug 'tpope/vim-sleuth'
 call plug#end()
 
 filetype plugin on
-filetype plugin indent on
+filetype indent plugin on
 syntax enable
 
 "plugin-fugitive
@@ -245,8 +245,11 @@ let g:airline#extensions#tabline#enabled = 1
 
 "plugin-omnisharp
 "-------------------------------------------------------------------------------
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
+if has("win32")
+    let g:OmniSharp_server_stdio = 0
+    let g:OmniSharp_server_path = '~/scoop/apps/omnisharp-http/current/OmniSharp.exe'
+else
+    let g:OmniSharp_server_stdio = 1
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

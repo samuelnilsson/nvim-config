@@ -11,7 +11,7 @@ let mapleader=','
 
 "plugin-list
 "-------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 "Required for some async plugins when not using neovim
 if !has('nvim')
@@ -250,6 +250,7 @@ if has("win32")
     let g:OmniSharp_server_path = '~/scoop/apps/omnisharp-http/current/OmniSharp.exe'
 else
     let g:OmniSharp_server_stdio = 1
+endif
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------
@@ -261,9 +262,7 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 "plugin-vim-session
 "-------------------------------------------------------------------------------
 let g:session_autoload = 0
-if has('win32')
-    let g:session_directory = '~/AppData/Local/nvim-data/session'
-endif
+let g:session_directory = stdpath('data') . '/session'
 
 "plugin-ultisnips
 "-------------------------------------------------------------------------------

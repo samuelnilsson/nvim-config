@@ -61,9 +61,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'OmniSharp/omnisharp-vim'
 
 "File type icons
-if !has('win32')
-    Plug 'ryanoasis/vim-devicons'
-endif
+Plug 'ryanoasis/vim-devicons'
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
@@ -187,13 +185,8 @@ let g:ale_fixers = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 
-if has('win32')
-    let g:ale_sign_warning = '⚠️'
-    let g:ale_sign_error = '✕'
-else
-    let g:ale_sign_warning = ''
-    let g:ale_sign_error = ''
-endif
+let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
 
 let g:airline#extensions#ale#enabled = 1
 
@@ -213,33 +206,18 @@ let g:airline_theme = 'base16_tomorrow'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-if has('win32')
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_symbols.branch = 'ᚠ'
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.linenr = '☰'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.whitespace = '☲'
-    let g:airline_symbols.spell = 'Ꞩ'
-    let g:airline_symbols.notexists = 'Ɇ'
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-else
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.maxlinenr = ' '
-    let g:airline_symbols.linenr = ''
-    let g:airline_symbols.paste = ''
-    let g:airline_symbols.whitespace = ''
-    let g:airline_symbols.spell = '暈'
-    let g:airline_symbols.notexists = ' '
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.maxlinenr = ' '
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.whitespace = ''
+let g:airline_symbols.spell = '暈'
+let g:airline_symbols.notexists = ' '
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 
 let g:airline#extensions#tabline#enabled = 1
 

@@ -1,5 +1,5 @@
 "Settings for neovim-qt
-Guifont! Fira Code:h11
+Guifont! FuraCode NF:h11
 GuiPopupmenu 0
 call GuiWindowMaximized(1)
 GuiLinespace 5

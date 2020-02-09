@@ -11,7 +11,7 @@ let mapleader=','
 
 "plugin-list
 "-------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 "Required for some async plugins when not using neovim
 if !has('nvim')
@@ -30,7 +30,6 @@ Plug 'chriskempson/base16-vim'
 "Auto completion engine
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-html', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
@@ -41,6 +40,8 @@ Plug 'neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-prettier', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-eslint', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 
@@ -61,9 +62,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'OmniSharp/omnisharp-vim'
 
 "File type icons
-if !has('win32')
-    Plug 'ryanoasis/vim-devicons'
-endif
+Plug 'ryanoasis/vim-devicons'
 
 "Change surroundings in pairs
 Plug 'tpope/vim-surround'
@@ -73,9 +72,6 @@ Plug 'scrooloose/nerdcommenter'
 
 "Display tags in a window
 Plug 'majutsushi/tagbar'
-
-"Display git diff in file
-Plug 'airblade/vim-gitgutter'
 
 "Expand abbreviations
 Plug 'mattn/emmet-vim'
@@ -115,17 +111,20 @@ Plug 'mhinz/vim-startify'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+"README reload
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
+
+"Highlight matching characters
+Plug 'andymass/vim-matchup'
+
+"Automatic tab detection
+Plug 'tpope/vim-sleuth'
+
 call plug#end()
 
 filetype plugin on
-filetype plugin indent on
+filetype indent plugin on
 syntax enable
-
-"plugin-gitgutter
-"-------------------------------------------------------------------------------
-let g:gitgutter_enabled = 1
-let g:gitgutter_async = 1
-set updatetime=200
 
 "plugin-fugitive
 "-------------------------------------------------------------------------------
@@ -187,19 +186,14 @@ let g:ale_fixers = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \}
 
-if has('win32')
-    let g:ale_sign_warning = '⚠️'
-    let g:ale_sign_error = '✕'
-else
-    let g:ale_sign_warning = ''
-    let g:ale_sign_error = ''
-endif
+let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
 
 let g:airline#extensions#ale#enabled = 1
 
 "plugin-editorconfig
 "-------------------------------------------------------------------------------
-let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 "plugin-easyalign
 "-------------------------------------------------------------------------------
@@ -213,40 +207,29 @@ let g:airline_theme = 'base16_tomorrow'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-if has('win32')
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_symbols.branch = 'ᚠ'
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.linenr = '☰'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.whitespace = '☲'
-    let g:airline_symbols.spell = 'Ꞩ'
-    let g:airline_symbols.notexists = 'Ɇ'
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-else
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.maxlinenr = ' '
-    let g:airline_symbols.linenr = ''
-    let g:airline_symbols.paste = ''
-    let g:airline_symbols.whitespace = ''
-    let g:airline_symbols.spell = '暈'
-    let g:airline_symbols.notexists = ' '
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.maxlinenr = ' '
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.whitespace = ''
+let g:airline_symbols.spell = '暈'
+let g:airline_symbols.notexists = ' '
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 
 let g:airline#extensions#tabline#enabled = 1
 
 "plugin-omnisharp
 "-------------------------------------------------------------------------------
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
+if has("win32")
+    let g:OmniSharp_server_stdio = 0
+    let g:OmniSharp_server_path = '~/scoop/apps/omnisharp-http/current/OmniSharp.exe'
+else
+    let g:OmniSharp_server_stdio = 1
+endif
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------
@@ -258,9 +241,7 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 "plugin-vim-session
 "-------------------------------------------------------------------------------
 let g:session_autoload = 0
-if has('win32')
-    let g:session_directory = '~/AppData/Local/nvim-data/session'
-endif
+let g:session_directory = stdpath('data') . '/session'
 
 "plugin-ultisnips
 "-------------------------------------------------------------------------------
@@ -304,8 +285,11 @@ set fillchars+=vert:▏
 "Set column indicator at 81 columns
 set colorcolumn=81
 
+set pyxversion=3
+
 "COLORS
 "===============================================================================
+set termguicolors
 set background=dark
 let base16colorspace=256
 colorscheme base16-tomorrow-night
@@ -324,14 +308,6 @@ hi ALEWarning ctermbg=3 guibg=3 ctermfg=0 guifg=0
 hi ALEErrorSign ctermfg=1 ctermbg=none guifg=1 guibg=none
 hi ALEWarningSign ctermfg=3 ctermbg=none guifg=3 guibg=none
 
-"WINDOWS SPECIFIC
-"===============================================================================
-if has('win32')
-    set backspace=indent,eol,start
-    let g:python3_host_prog='C:/Python37/python3.exe'
-    let g:python_host_prog='C:/Python27/python2.exe'
-endif
-
 "SEARCH
 "===============================================================================
 set hlsearch
@@ -339,10 +315,10 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 "INDENTATION
 "===============================================================================
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set secure
+let g:sleuth_automatic = 0
+if len(findfile('.editorconfig', '.;')) == 0
+    autocmd VimEnter * Sleuth
+endif
 
 "TERMINAL MODE
 "===============================================================================
@@ -356,3 +332,7 @@ nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>h+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+"MARKDOWN
+"===============================================================================
+let g:mkdp_browser = 'chromium'

@@ -289,7 +289,6 @@ set pyxversion=3
 
 "COLORS
 "===============================================================================
-set termguicolors
 set background=dark
 let base16colorspace=256
 colorscheme base16-tomorrow-night

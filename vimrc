@@ -40,6 +40,7 @@ Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-lists', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-git', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 

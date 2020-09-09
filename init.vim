@@ -105,6 +105,9 @@ Plug 'andymass/vim-matchup'
 "Automatic tab detection
 Plug 'tpope/vim-sleuth'
 
+"Golang plugin
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 filetype plugin on
@@ -209,7 +212,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 "plugin-omnisharp
 "-------------------------------------------------------------------------------
-if has("win32")
+if has('win32')
     let g:OmniSharp_server_stdio = 0
     let g:OmniSharp_server_path = '~/scoop/apps/omnisharp-http/current/OmniSharp.exe'
 else
@@ -301,7 +304,9 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "===============================================================================
 let g:sleuth_automatic = 0
 if len(findfile('.editorconfig', '.;')) == 0
-    autocmd VimEnter * Sleuth
+    augroup indentation
+        autocmd VimEnter * Sleuth
+    augroup END
 endif
 
 "TERMINAL MODE

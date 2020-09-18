@@ -108,6 +108,9 @@ Plug 'tpope/vim-sleuth'
 "Golang plugin
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+"Split to multiple lines
+Plug 'AndrewRadev/splitjoin.vim'
+
 call plug#end()
 
 filetype plugin on

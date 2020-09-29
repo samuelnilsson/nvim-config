@@ -105,7 +105,10 @@ Plug 'andymass/vim-matchup'
 "Automatic tab detection
 Plug 'tpope/vim-sleuth'
 
-"Automatically split single line into multiple
+"Golang plugin
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+"Split to multiple lines
 Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
@@ -301,9 +304,12 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 "INDENTATION
 "===============================================================================
+set tabstop=4
 let g:sleuth_automatic = 0
 if len(findfile('.editorconfig', '.;')) == 0
-    autocmd VimEnter * Sleuth
+    augroup indentation
+        autocmd VimEnter * Sleuth
+    augroup END
 endif
 
 "TERMINAL MODE

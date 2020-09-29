@@ -105,6 +105,9 @@ Plug 'andymass/vim-matchup'
 "Automatic tab detection
 Plug 'tpope/vim-sleuth'
 
+"Automatically split single line into multiple
+Plug 'AndrewRadev/splitjoin.vim'
+
 call plug#end()
 
 filetype plugin on
@@ -138,6 +141,7 @@ map <Leader>gc :CocList commits<CR>
 map <Leader>gb :CocList branches<CR>
 map <Leader>gs :CocList gstatus<CR>
 
+map <Leader>ca :CocAction<CR>
 map <Leader>rn <Plug>(coc-rename)
 map <Leader>f <Plug>(coc-format-selected)
 map <Leader>qf <Plug>(coc-fix-current)
@@ -209,12 +213,10 @@ let g:airline#extensions#tabline#enabled = 1
 
 "plugin-omnisharp
 "-------------------------------------------------------------------------------
+let g:OmniSharp_server_stdio = 1
 if has("win32")
-    let g:OmniSharp_server_stdio = 0
-    let g:OmniSharp_server_path = '~/scoop/apps/omnisharp-http/current/OmniSharp.exe'
+    let g:OmniSharp_server_path = 'C:/Users/samuel.nilsson/scoop/apps/omnisharp/current/OmniSharp.exe'
 else
-    let g:OmniSharp_server_stdio = 1
-endif
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------
@@ -320,3 +322,11 @@ nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
 "MARKDOWN
 "===============================================================================
 let g:mkdp_browser = 'chromium'
+
+let g:python_host_prog = 'C:/Users/samuel.nilsson/scoop/shims/python3.exe'
+
+"CLIPBOARD
+"===============================================================================
+
+"always yank/paste to clipboard
+set clipboard ^= unnamed,unnamedplus

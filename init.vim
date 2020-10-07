@@ -217,7 +217,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:OmniSharp_server_stdio = 1
 if has("win32")
     let g:OmniSharp_server_path = 'C:/Users/samuel.nilsson/scoop/apps/omnisharp/current/OmniSharp.exe'
-else
+endif
 
 "plugin-nerdtree
 "-------------------------------------------------------------------------------

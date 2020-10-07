@@ -1,5 +1,3 @@
-set runtimepath+=~/.vim
-
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -250,7 +248,9 @@ set relativenumber
 set cursorline
 
 "Always use clipboard
-if !has('win32')
+if has('win32')
+    set clipboard^=unnamed,unnamedplus
+else
     set clipboard+=unnamedplus
 endif
 
@@ -329,10 +329,6 @@ nnoremap <silent> <Leader>h- :exe "resize " . (winheight(0) * 2/3)<CR>
 "===============================================================================
 let g:mkdp_browser = 'chromium'
 
-let g:python_host_prog = 'C:/Users/samuel.nilsson/scoop/shims/python3.exe'
-
-"CLIPBOARD
-"===============================================================================
-
-"always yank/paste to clipboard
-set clipboard ^= unnamed,unnamedplus
+if has("win32")
+    let g:python_host_prog = 'C:/Users/samuel.nilsson/scoop/shims/python3.exe'
+endif

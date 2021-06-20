@@ -39,7 +39,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Syntax files
-Plug 'sheerun/vim-polyglot'
+Plug 'dart-lang/dart-vim-plugin'
 
 "C# language server
 Plug 'OmniSharp/omnisharp-vim'
@@ -108,6 +108,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "Split to multiple lines
 Plug 'AndrewRadev/splitjoin.vim'
+
+"Personal wiki
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -332,3 +335,8 @@ let g:mkdp_browser = 'chromium'
 if has("win32")
     let g:python_host_prog = 'C:/Users/samuel.nilsson/scoop/shims/python3.exe'
 endif
+
+"WIKI
+"===============================================================================
+
+source ./wiki.vim

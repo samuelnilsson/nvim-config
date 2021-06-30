@@ -1,5 +1,1 @@
-init.vim
-plugged
-*.swp
-autoload
-sessions
+lua/plugin/wiki.lua

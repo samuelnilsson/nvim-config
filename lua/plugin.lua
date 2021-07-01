@@ -47,11 +47,9 @@ return require('packer').startup(function(use)
 			'nvim-lua/plenary.nvim'
 		},
 		config = function()
-			require('gitsigns').setup()
+			require('plugin.gitsigns')
 		end
 	}
-
-	use 'f-person/git-blame.nvim'
 
 	use {
 		'windwp/nvim-autopairs',

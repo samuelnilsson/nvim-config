@@ -1,6 +1,6 @@
 local map = require('helper').map
 
-vim.cmd 'colorscheme base16-tomorrow-night'
+require('onedark').setup()
 
 vim.g.mapleader = ','
 vim.opt.cursorline = true

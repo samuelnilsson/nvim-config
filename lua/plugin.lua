@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
 		end
 	}
 
-	use 'RRethy/nvim-base16'
+	use 'navarasu/onedark.nvim'
 
 	use {
 		'nvim-telescope/telescope.nvim',

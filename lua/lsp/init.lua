@@ -1,2 +1,3 @@
-require('lsp.ts')
+require('lsp.cs')
 require('lsp.efm')
+require('lsp.ts')

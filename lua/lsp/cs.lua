@@ -1,9 +1,13 @@
 local lsp_config = require('lspconfig')
 local on_attach = require('lsp.on_attach')
 
-local pid = vim.fn.getpid()
-local omnisharp_bin = (os.getenv('OMNISHARP_DIRECTORY') .. '/OmniSharp.exe')
+local omnisharp_dir = os.getenv('OMNISHARP_DIRECTORY')
 
-lsp_config.omnisharp.setup{
-    cmd = { omnisharp_bin, '--languageserver' , "--hostPID", tostring(pid) };
-}
+if omnisharp_dir then
+    local pid = vim.fn.getpid()
+    local omnisharp_bin = (omnisharp_dir .. '/OmniSharp.exe')
+
+    lsp_config.omnisharp.setup {
+        cmd = {omnisharp_bin, '--languageserver', "--hostPID", tostring(pid)}
+    }
+end

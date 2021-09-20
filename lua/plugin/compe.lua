@@ -17,7 +17,7 @@ require'compe'.setup {
     max_menu_width = 100,
     documentation = true,
 
-    source = {path = true, buffer = true, calc = true, nvim_lsp = true}
+    source = {path = true, buffer = true, calc = true, nvim_lsp = true, vim_dadbod_completion = true}
 }
 
 map('i', '<C-Space>', 'compe#complete()', {expr = true, silent = true})

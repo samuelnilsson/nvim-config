@@ -82,4 +82,8 @@ return require('packer').startup(function(use)
     use 'rmagatti/auto-session'
 
     use 'b3nj5m1n/kommentary'
+
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui'
+	use 'kristijanhusak/vim-dadbod-completion'
 end)

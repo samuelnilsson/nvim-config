@@ -3,6 +3,8 @@ local on_attach = require('lsp.on_attach')
 local eslint = require('lsp.efm.eslint')
 local prettier = require('lsp.efm.prettier')
 local luaformat = require('lsp.efm.luaformat')
+local black = require('lsp.efm.black')
+local flake8 = require('lsp.efm.flake8')
 
 local efm_root_markers = {'package.json', '.git'}
 local efm_languages = {
@@ -21,7 +23,8 @@ local efm_languages = {
     graphql = {prettier},
     vue = {prettier},
     html = {prettier},
-    lua = {luaformat}
+    lua = {luaformat},
+	python = {black, flake8}
 }
 
 lsp_config.efm.setup({

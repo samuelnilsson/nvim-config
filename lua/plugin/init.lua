@@ -86,13 +86,6 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"simrat39/symbols-outline.nvim",
-		config = function()
-			require("plugin.symbols_outline")
-		end,
-	})
-
-	use({
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()

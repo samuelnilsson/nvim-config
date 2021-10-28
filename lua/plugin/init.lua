@@ -22,9 +22,11 @@ return require('packer').startup(function(use)
         config = function() require('plugin.treesitter') end
     }
 
-    use 'neovim/nvim-lspconfig'
-
-    use {'hrsh7th/nvim-compe', config = function() require('plugin.compe') end}
+	use {
+		'neoclide/coc.nvim',
+		branch = 'release',
+        config = function() require('plugin.coc') end
+	}
 
     use 'navarasu/onedark.nvim'
 
@@ -49,7 +51,7 @@ return require('packer').startup(function(use)
 
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', 'nvim-lua/lsp-status.nvim'},
+        requires = {'kyazdani42/nvim-web-devicons'},
         config = function() require('plugin.lualine') end
     }
 

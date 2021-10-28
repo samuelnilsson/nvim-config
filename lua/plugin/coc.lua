@@ -21,7 +21,7 @@ vim.api.nvim_set_keymap("n", "<Leader>f", "<Plug>(coc-format-selected)", { norem
 vim.api.nvim_set_keymap("n", "<Leader>rn", "<Plug>(coc-rename)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>rf", "<Plug>(coc-references)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>qf", "<Plug>(coc-fix-current)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>sf", "<cmd>:CocFix<CR>", { noremap = false })
+vim.api.nvim_set_keymap("n", "<Leader>cf", "<cmd>:CocFix<CR>", { noremap = false })
 
 -- Snippets
 

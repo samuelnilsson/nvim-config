@@ -1,6 +1,6 @@
 local map = require('helper').map
 
-require('onedark').setup()
+require('onedark').load()
 
 vim.g.mapleader = ','
 vim.opt.cursorline = true

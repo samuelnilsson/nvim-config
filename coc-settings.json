@@ -10,5 +10,6 @@
     "html",
     "json",
     "lua"
-  ]
+  ],
+  "Lua.telemetry.enable": true
 }

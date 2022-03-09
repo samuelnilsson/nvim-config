@@ -101,4 +101,6 @@ return require("packer").startup(function(use)
 	use("kristijanhusak/vim-dadbod-completion")
 
 	use("diepm/vim-rest-console")
+
+	use("jlcrochet/vim-razor")
 end)

@@ -8,8 +8,7 @@ vim.g.coc_global_extensions = {
 	"coc-json",
 	"coc-lists",
 	"coc-snippets",
-	"coc-sumneko-lua",
-	"coc-stylua",
+	"coc-sumneko-lua"
 }
 
 vim.api.nvim_set_keymap("n", "<Leader>rn", "<Plug>(coc-rename)", { noremap = false })

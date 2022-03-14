@@ -103,4 +103,21 @@ return require("packer").startup(function(use)
 	use("diepm/vim-rest-console")
 
 	use("jlcrochet/vim-razor")
+
+	use({
+		"OmniSharp/omnisharp-vim",
+		config = function()
+			require("plugin.omnisharp")
+		end,
+	})
+
+	use "sirver/UltiSnips"
+	use "honza/vim-snippets"
+
+	use ({
+		"puremourning/vimspector",
+		config = function()
+			require("plugin.vimspector")
+		end,
+	})
 end)

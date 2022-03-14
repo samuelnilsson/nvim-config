@@ -4,7 +4,6 @@ vim.g.coc_global_extensions = {
 	"coc-prettier",
 	"coc-css",
 	"coc-powershell",
-	"coc-omnisharp",
 	"coc-json",
 	"coc-lists",
 	"coc-snippets",
@@ -17,7 +16,6 @@ vim.api.nvim_set_keymap("n", "<Leader>ca", "<Plug>(coc-code-action)", { noremap 
 vim.api.nvim_set_keymap("n", "<Leader>gd", "<Plug>(coc-definition)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>gi", "<Plug>(coc-implementation)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>f", "<Plug>(coc-format-selected)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>rn", "<Plug>(coc-rename)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>rf", "<Plug>(coc-references)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>qf", "<Plug>(coc-fix-current)", { noremap = false })
 vim.api.nvim_set_keymap("n", "<Leader>cf", "<cmd>:CocFix<CR>", { noremap = false })

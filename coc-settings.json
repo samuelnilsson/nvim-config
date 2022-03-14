@@ -11,5 +11,8 @@
     "json",
     "lua"
   ],
+  "snippets.extends": {
+    "razor": ["html", "cs"]
+  },
   "Lua.telemetry.enable": true
 }

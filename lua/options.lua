@@ -13,3 +13,4 @@ vim.opt.termguicolors = true
 map('', '<Leader>y', '"+y') -- copy to clipboard
 map('', '<Leader>p', '"+p') -- paste from clipboard
 map('n', '<Space>', ':nohlsearch<Bar>:echo<CR>', {silent = true}) -- Hide search highlight
+

@@ -2,10 +2,7 @@ local saga = require('lspsaga')
 local keymap = vim.keymap.set;
 local map = require('helper').map
 
-saga.init_lsp_saga({
-	border_style = "rounded",
-	code_action_icon = "",
-})
+saga.init_lsp_saga({border_style = "rounded", code_action_icon = ""})
 
 local signs = {
     Error = " ",
@@ -31,11 +28,15 @@ map("n", "<leader>dc", "<cmd>Lspsaga hover_doc<CR>")
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 keymap("n", "[E", function()
-  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    require("lspsaga.diagnostic").goto_prev({
+        severity = vim.diagnostic.severity.ERROR
+    })
 end, {silent = true})
 keymap("n", "]E", function()
-  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, {silent=true})
+    require("lspsaga.diagnostic").goto_next({
+        severity = vim.diagnostic.severity.ERROR
+    })
+end, {silent = true})
 
 map("n", "<C-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>")
 map("t", "<C-g>", [[<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>]])

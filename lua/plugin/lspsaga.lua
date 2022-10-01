@@ -1,5 +1,5 @@
 local saga = require('lspsaga')
-local keymap = vim.keymap.set
+local map = require('helper').map
 
 saga.init_lsp_saga({
 	border_style = "rounded",
@@ -18,23 +18,23 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
 
-keymap("n", "<leader>fn", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
-keymap("n", "<leader>sd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
-keymap("n", "<leader>sd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
-keymap("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
-keymap("n", "<leader>gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
-keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
-keymap("n", "<leader>dc", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+map("n", "<leader>fn", "<cmd>Lspsaga lsp_finder<CR>")
+map("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
+map("n", "<leader>sd", "<cmd>Lspsaga show_line_diagnostics<CR>")
+map("n", "<leader>sd", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+map("n", "<leader>gd", "<cmd>Lspsaga peek_definition<CR>")
+map("n","<leader>o", "<cmd>LSoutlineToggle<CR>")
+map("n", "<leader>dc", "<cmd>Lspsaga hover_doc<CR>")
 
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-keymap("n", "[E", function()
+map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+map("n", "[E", function()
   require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, { silent = true })
-keymap("n", "]E", function()
+end)
+map("n", "]E", function()
   require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, { silent = true })
+end)
 
-keymap("n", "<C-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
-keymap("t", "<C-g>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+map("n", "<C-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>")
+map("t", "<C-g>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]])

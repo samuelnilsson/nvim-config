@@ -28,3 +28,19 @@ lspconfig.sumneko_lua.setup{
     },
   },
 }
+
+lspconfig.efm.setup{
+	init_options = {
+		documentFormatting = true,
+	},
+	settings = {
+		languages = {
+			lua = {
+				{
+					formatCommand = "lua-format -i",
+					formatStdin = true
+				}
+			}
+		}
+	}
+}

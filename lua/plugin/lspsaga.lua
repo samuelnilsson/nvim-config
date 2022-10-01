@@ -1,4 +1,5 @@
 local saga = require('lspsaga')
+local keymap = vim.keymap.set;
 local map = require('helper').map
 
 saga.init_lsp_saga({
@@ -24,17 +25,17 @@ map("n", "<leader>sd", "<cmd>Lspsaga show_line_diagnostics<CR>")
 map("n", "<leader>sd", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
 map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 map("n", "<leader>gd", "<cmd>Lspsaga peek_definition<CR>")
-map("n","<leader>o", "<cmd>LSoutlineToggle<CR>")
+map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>")
 map("n", "<leader>dc", "<cmd>Lspsaga hover_doc<CR>")
 
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-map("n", "[E", function()
+keymap("n", "[E", function()
   require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end)
-map("n", "]E", function()
+end, {silent = true})
+keymap("n", "]E", function()
   require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-end)
+end, {silent=true})
 
 map("n", "<C-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>")
-map("t", "<C-g>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]])
+map("t", "<C-g>", [[<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>]])

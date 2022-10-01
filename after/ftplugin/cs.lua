@@ -1,7 +1,0 @@
-vim.api.nvim_set_keymap("n", "<Leader>rn", "<Plug>(omnisharp_rename)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>ca", "<Plug>(omnisharp_code_actions)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>gd", "<Plug>(omnisharp_go_to_definition)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>gi", "<Plug>(omnisharp_find_implementations)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>f", "<Plug>(omnisharp_code_format)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>rf", "<Plug>(omnisharp_find_usages)", { noremap = false })
-vim.api.nvim_set_keymap("n", "<Leader>qf", "<Plug>(omnisharp_fix_usings)", { noremap = false })

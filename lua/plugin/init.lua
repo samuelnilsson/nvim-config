@@ -27,10 +27,34 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"neoclide/coc.nvim",
-		branch = "release",
+		"neovim/nvim-lspconfig",
 		config = function()
-			require("plugin.coc")
+			require("plugin.lspconfig")
+		end,
+	})
+
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7th/vim-vsnip'
+	use 'onsails/lspkind.nvim'
+	use 'SirVer/ultisnips'
+	use 'honza/vim-snippets'
+	use 'quangnguyen30192/cmp-nvim-ultisnips'
+	use({
+		'hrsh7th/nvim-cmp',
+		config = function()
+			require("plugin.cmp")
+		end,
+	})
+
+	use({
+		'glepnir/lspsaga.nvim',
+		branch = 'main',
+		config = function()
+			require("plugin.lspsaga")
 		end,
 	})
 
@@ -61,6 +85,7 @@ return require("packer").startup(function(use)
 
 	use("dstein64/nvim-scrollview")
 
+	use 'nvim-lua/lsp-status.nvim'
 	use({
 		"hoob3rt/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
@@ -101,18 +126,6 @@ return require("packer").startup(function(use)
 	use("kristijanhusak/vim-dadbod-completion")
 
 	use("diepm/vim-rest-console")
-
-	use("jlcrochet/vim-razor")
-
-	use({
-		"OmniSharp/omnisharp-vim",
-		config = function()
-			require("plugin.omnisharp")
-		end,
-	})
-
-	use "sirver/UltiSnips"
-	use "honza/vim-snippets"
 
 	use ({
 		"puremourning/vimspector",

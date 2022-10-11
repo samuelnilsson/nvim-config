@@ -45,6 +45,11 @@ return require("packer").startup(function(use)
         config = function() require("plugin.lspsaga") end
     })
 
+    use {
+        'nvim-orgmode/orgmode',
+        config = function() require('plugin.orgmode') end
+    }
+
     use("navarasu/onedark.nvim")
 
     use({
@@ -71,14 +76,6 @@ return require("packer").startup(function(use)
         "hoob3rt/lualine.nvim",
         requires = {"kyazdani42/nvim-web-devicons"},
         config = function() require("plugin.lualine") end
-    })
-
-    use({
-        "vimwiki/vimwiki",
-        config = function()
-            -- try to require lua/wiki.lua where vim.g.vimwiki_list is set
-            pcall(require, "plugin.wiki")
-        end
     })
 
     use({

@@ -59,6 +59,13 @@ cmp.setup.filetype('sql', {
     })
 })
 
+cmp.setup.filetype('org', {
+    sources = cmp.config.sources({
+        {name = 'orgmode'}, {name = 'path'},
+        {name = 'buffer'}
+    })
+})
+
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({{name = 'git'}, {name = 'buffer'}})
 })

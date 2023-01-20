@@ -2,7 +2,7 @@ local saga = require('lspsaga')
 local keymap = vim.keymap.set;
 local map = require('helper').map
 
-saga.init_lsp_saga({border_style = "rounded", code_action_icon = ""})
+saga.setup({border_style = "rounded", code_action_icon = ""})
 
 local signs = {
     Error = " ",

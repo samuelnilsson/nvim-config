@@ -17,7 +17,20 @@ local on_attach = function(client, _)
     end
 end
 
-lspconfig.csharp_ls.setup {on_attach = on_attach, capabilities = capabilities}
+lspconfig.csharp_ls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern('*.sln'),
+	on_new_config = function(new_config, new_root_dir)
+		new_config.cmd = { 'csharp-ls' }
+		for dir in io.popen("ls -pa " .. new_root_dir .. " | grep -v /]]"):lines() do
+			if dir:match(".sln") ~= nil then
+				vim.list_extend(new_config.cmd, { '-s', dir })
+				break
+			end
+		end
+	end
+}
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,

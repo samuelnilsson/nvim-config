@@ -45,11 +45,6 @@ return require("packer").startup(function(use)
         config = function() require("plugin.lspsaga") end
     })
 
-    use({
-        "ray-x/lsp_signature.nvim",
-        config = function() require("lsp_signature").setup({}) end
-    })
-
     use {
         'nvim-orgmode/orgmode',
         config = function() require('plugin.orgmode') end
@@ -107,10 +102,5 @@ return require("packer").startup(function(use)
     use({
         "puremourning/vimspector",
         config = function() require("plugin.vimspector") end
-    })
-
-    use({
-        'https://git.sr.ht/~soywod/himalaya-vim',
-        config = function() require("plugin.himalaya") end
     })
 end)
